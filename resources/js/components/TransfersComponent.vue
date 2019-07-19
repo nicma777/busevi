@@ -61,7 +61,10 @@
                             <td>{{ transfer.city }}</td>
                             <td>{{ transfer.carrier }}</td>
                             <td>{{ transfer.datetime | time }}</td>
-                            <td>{{ transfer.status }}</td>
+                            <td>
+                                <span v-if="!transfer.status" class="badge badge-success">OK</span>
+                                <span v-else class="badge badge-danger">DELAY</span>
+                            </td>
                             <td class="text-right">
                                 <button class="btn btn-sm btn-secondary" @click="changeStatus(transfer.id, transfer.status)"><i class="fa fa-clock-o"></i></button>
 

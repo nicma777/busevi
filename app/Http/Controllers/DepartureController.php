@@ -16,7 +16,7 @@ class DepartureController extends Controller
      */
     public function index()
     {
-        return  Departure::where('datetime', '>=', Carbon::now('Europe/Stockholm'))->orderBy('datetime')->take(50)->get();
+        return  Departure::where('datetime', '>=', Carbon::now('Europe/Zagreb'))->orderBy('datetime')->take(50)->get();
 
     }
 
@@ -79,7 +79,7 @@ class DepartureController extends Controller
      */
     public function update(Departure $departure, Request $request)
     {
-        
+
         return $departure->update(['status' => !$request->status]);
     }
 

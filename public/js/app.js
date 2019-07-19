@@ -1940,6 +1940,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.getTransfers();
@@ -66651,7 +66654,15 @@ var render = function() {
                       _vm._v(_vm._s(_vm._f("time")(transfer.datetime)))
                     ]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(transfer.status))]),
+                    _c("td", [
+                      !transfer.status
+                        ? _c("span", { staticClass: "badge badge-success" }, [
+                            _vm._v("OK")
+                          ])
+                        : _c("span", { staticClass: "badge badge-danger" }, [
+                            _vm._v("DELAY")
+                          ])
+                    ]),
                     _vm._v(" "),
                     _c("td", { staticClass: "text-right" }, [
                       _c(
