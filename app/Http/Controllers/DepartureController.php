@@ -79,8 +79,7 @@ class DepartureController extends Controller
      */
     public function update(Departure $departure, Request $request)
     {
-
-
+        
         return $departure->update(['status' => !$request->status]);
     }
 
