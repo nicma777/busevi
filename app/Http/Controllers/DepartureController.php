@@ -43,7 +43,7 @@ class DepartureController extends Controller
         $data['datetime'] = Carbon::parse($request->datetime)->timezone('Europe/Zagreb')->toDateTimeString();
 
         Departure::create($data);
-        
+
         return "Ruta kreirana";
 
     }
@@ -77,9 +77,11 @@ class DepartureController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Departure $departure, Request $request)
     {
-        //
+
+
+        return $departure->update(['status' => !$request->status]);
     }
 
     /**

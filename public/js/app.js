@@ -1860,8 +1860,6 @@ module.exports = function isBuffer (obj) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -1926,7 +1924,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.getTransfers();
@@ -1945,22 +1958,33 @@ __webpack_require__.r(__webpack_exports__);
   props: ['type'],
   methods: {
     "delete": function _delete() {},
-    getTransfers: function getTransfers() {
+    changeStatus: function changeStatus(id, currentStatus) {
       var _this = this;
 
-      axios.get('/' + this.type + '/').then(function (response) {
-        _this.transfers = response.data;
+      axios.put('/' + this.type + '/' + id, {
+        status: currentStatus
+      }).then(function (response) {
+        _this.getTransfers();
       })["catch"](function (error) {
         _this.error = true;
       });
     },
-    addTransfer: function addTransfer() {
+    getTransfers: function getTransfers() {
       var _this2 = this;
 
-      axios.post('/' + this.type + '/', this.data).then(function (response) {
-        _this2.getTransfers();
+      axios.get('/' + this.type + '/').then(function (response) {
+        _this2.transfers = response.data;
       })["catch"](function (error) {
         _this2.error = true;
+      });
+    },
+    addTransfer: function addTransfer() {
+      var _this3 = this;
+
+      axios.post('/' + this.type + '/', this.data).then(function (response) {
+        _this3.getTransfers();
+      })["catch"](function (error) {
+        _this3.error = true;
       });
     }
   }
@@ -66463,7 +66487,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "form-row" }, [
-      _c("div", { staticClass: "col" }, [
+      _c("div", { staticClass: "col  col-md-3 col-sm-12 col-xs-12" }, [
+        _c("label", { attrs: { for: "" } }, [_vm._v("Grad")]),
+        _vm._v(" "),
         _c("input", {
           directives: [
             {
@@ -66474,7 +66500,7 @@ var render = function() {
             }
           ],
           staticClass: "form-control",
-          attrs: { type: "text", name: "city", placeholder: "Grad" },
+          attrs: { type: "text", name: "city" },
           domProps: { value: _vm.data.city },
           on: {
             input: function($event) {
@@ -66487,7 +66513,9 @@ var render = function() {
         })
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col" }, [
+      _c("div", { staticClass: "col  col-md-3 col-sm-12 col-xs-12" }, [
+        _c("label", { attrs: { for: "" } }, [_vm._v("Prijevoznik")]),
+        _vm._v(" "),
         _c("input", {
           directives: [
             {
@@ -66498,7 +66526,7 @@ var render = function() {
             }
           ],
           staticClass: "form-control",
-          attrs: { type: "text", placeholder: "Prijevoznik" },
+          attrs: { type: "text" },
           domProps: { value: _vm.data.carrier },
           on: {
             input: function($event) {
@@ -66513,8 +66541,10 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "col" },
+        { staticClass: "col  col-md-3 col-sm-12 col-xs-12" },
         [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Datum i vrijeme")]),
+          _vm._v(" "),
           _c("datetime", {
             attrs: {
               type: "datetime",
@@ -66533,25 +66563,67 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "col" }, [
+      _c("div", { staticClass: "col col-md-2 col-sm-12 col-xs-12" }, [
+        _c("label", { attrs: { for: "" } }, [_vm._v("Status")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.data.status,
+                expression: "data.status"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: "" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.data,
+                  "status",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { value: "" } }, [_vm._v("OK")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "1" } }, [_vm._v("DELAY")])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col col-md-1 col-sm-12 col-xs-12" }, [
+        _c("label", { attrs: { for: "" } }, [_vm._v(" ")]),
+        _vm._v(" "),
         _c(
           "button",
           {
-            staticClass: "btn btn-block btn-primary",
+            staticClass: "btn btn-block btn-success",
             on: {
               click: function($event) {
                 return _vm.addTransfer()
               }
             }
           },
-          [_vm._v("Unos")]
+          [_c("i", { staticClass: "fa fa-save" })]
         )
       ])
     ]),
     _vm._v(" "),
-    _c("hr"),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "row mt-3" }, [
       _c("div", { staticClass: "col-md-12" }, [
         _c("div", { staticClass: "table-responsive" }, [
           _c(
@@ -66581,7 +66653,25 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(transfer.status))]),
                     _vm._v(" "),
-                    _vm._m(1, true)
+                    _c("td", { staticClass: "text-right" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-sm btn-secondary",
+                          on: {
+                            click: function($event) {
+                              return _vm.changeStatus(
+                                transfer.id,
+                                transfer.status
+                              )
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fa fa-clock-o" })]
+                      ),
+                      _vm._v(" "),
+                      _vm._m(1, true)
+                    ])
                   ])
                 }),
                 0
@@ -66610,7 +66700,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Status")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Akcija")])
+        _c("th", { staticClass: "text-right" }, [_vm._v("Akcija")])
       ])
     ])
   },
@@ -66618,10 +66708,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("button", { staticClass: "btn btn-sm btn-danger" }, [
-        _vm._v("Brisanje")
-      ])
+    return _c("button", { staticClass: "btn btn-sm btn-danger" }, [
+      _c("i", { staticClass: "fa fa-fw fa-trash" })
     ])
   }
 ]

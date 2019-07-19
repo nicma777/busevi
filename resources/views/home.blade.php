@@ -13,10 +13,10 @@
 
     <div class="row second mb-0">
         <div class="col col-md-6  text-center text-white column-head">
-         DOLASCI &nbsp;<span class="text-second">ARIVALS</span>
+            DOLASCI &nbsp;&nbsp; &nbsp;<span class="text-second">ARIVALS</span>
         </div>
         <div class="col col-md-6 text-center text-white column-head">
-            POLASCI &nbsp;<span class="text-second">DEPARTURES</span>
+            POLASCI &nbsp; &nbsp;<span class="text-second">DEPARTURES</span>
         </div>
     </div>
 
@@ -43,21 +43,27 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($departures as $depatrure)
-                <tr>
-                    <td>{{ $depatrure->city }}</td>
-                    <td>{{ $depatrure->carrier }}</td>
-                    <td>{{ \Carbon\Carbon::parse($depatrure->datetime)->format('H:i') }}</td>
+                @foreach($arivals as $arival)
+                    <tr>
+                        <td>{{ $arival->city }}</td>
+                        <td>{{ $arival->carrier }}</td>
+                        <td>
+                            @if($arival->status)
+                                <span  class="text-danger delay">DELAY</span>
+                            @else
+                                <span>{{ \Carbon\Carbon::parse($arival->datetime)->format('H:i') }}</span>
+                            @endif
+                        </td>
 
-                </tr>
-                    @endforeach
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
         <div class="col col-md-6  p-0">
             <table class="table table-zebra table-borderless">
 
-            <thead>
+                <thead>
                 <tr>
                     <th class>
                         <strong class="text-white header">Autobusna linija</strong>
@@ -70,21 +76,28 @@
                         <span class="text-second header">Carrier</span>
                     </th>
                     <th>
-                        <strong class="text-white header">Dolazak </strong>
+                        <strong class="text-white header">Polazak </strong>
                         <br>
-                        <span class="text-second header">Arival</span>
+                        <span class="text-second header">Depatrure</span>
                     </th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($arivals as $arival)
+                @foreach($departures as $depatrure)
                     <tr>
-                        <td>{{ $arival->city }}</td>
-                        <td>{{ $arival->carrier }}</td>
-                        <td>{{ \Carbon\Carbon::parse($arival->datetime)->format('H:i') }}</td>
+                        <td>{{ $depatrure->city }}</td>
+                        <td>{{ $depatrure->carrier }}</td>
+                        <td>
+                            @if($depatrure->status)
+                                <strong  class="delay">DELAY</strong>
+                            @else
+                                <span>{{ \Carbon\Carbon::parse($depatrure->datetime)->format('H:i') }}</span>
+                            @endif
+                        </td>
 
                     </tr>
                 @endforeach
+
                 </tbody>
             </table>
 

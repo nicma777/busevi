@@ -1,18 +1,22 @@
 <template>
     <div>
         <div class="form-row">
-            <div class="col">
+            <div class="col  col-md-3 col-sm-12 col-xs-12">
+                <label for="">Grad</label>
                 <input type="text" name="city"
                        v-model="data.city"
-                       class="form-control" placeholder="Grad">
+                       class="form-control" >
             </div>
-            <div class="col">
+            <div class="col  col-md-3 col-sm-12 col-xs-12">
+                <label for="">Prijevoznik</label>
                 <input type="text"
                        v-model="data.carrier"
-                       class="form-control" placeholder="Prijevoznik">
+                       class="form-control" >
             </div>
 
-            <div class="col">
+            <div class="col  col-md-3 col-sm-12 col-xs-12">
+                <label for="">Datum i vrijeme</label>
+
                 <datetime type="datetime"
                           format="yyyy-MM-dd HH:mm:ss"
                           input-class="form-control"
@@ -20,14 +24,24 @@
                 </datetime>
             </div>
 
+            <div class="col col-md-2 col-sm-12 col-xs-12">
+                <label for="">Status</label>
 
-            <div class="col">
-                <button class="btn btn-block btn-primary" @click="addTransfer()">Unos</button>
+                <select v-model="data.status" class="form-control"id="">
+                    <option value="">OK</option>
+                    <option value="1">DELAY</option>
+                </select>
+            </div>
+
+            <div class="col col-md-1 col-sm-12 col-xs-12">
+                <label for="">&nbsp;</label>
+
+                <button class="btn btn-block btn-success" @click="addTransfer()"><i class="fa fa-save"></i></button>
             </div>
 
         </div>
-        <hr>
-        <div class="row">
+
+        <div class="row mt-3">
             <div class="col-md-12">
                 <div class="table-responsive">
                     <table class="table  table-striped" style="width: 100%">
@@ -38,7 +52,7 @@
                             <th>Prijevoznik</th>
                             <th>Vrijeme</th>
                             <th>Status</th>
-                            <th>Akcija</th>
+                            <th class="text-right">Akcija</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -48,8 +62,10 @@
                             <td>{{ transfer.carrier }}</td>
                             <td>{{ transfer.datetime | time }}</td>
                             <td>{{ transfer.status }}</td>
-                            <td>
-                                <button class="btn btn-sm btn-danger">Brisanje</button>
+                            <td class="text-right">
+                                <button class="btn btn-sm btn-secondary" @click="changeStatus(transfer.id, transfer.status)"><i class="fa fa-clock-o"></i></button>
+
+                                <button class="btn btn-sm btn-danger"><i class="fa fa-fw fa-trash"></i></button>
                             </td>
                         </tr>
                         </tbody>
@@ -63,10 +79,8 @@
 </template>
 
 <script>
-    import moment from 'moment'
 
     export default {
-
 
         mounted() {
             this.getTransfers()
@@ -94,6 +108,16 @@
 
                 },
 
+                changeStatus(id, currentStatus){
+
+                    axios.put('/' + this.type + '/' + id, {status: currentStatus}
+                    ).then(response => {
+                        this.getTransfers();
+
+                    }).catch(error => {
+                        this.error = true
+                    });
+                },
 
                 getTransfers() {
 
@@ -116,7 +140,6 @@
                         this.error = true
                     });
                 },
-
 
             }
         }
