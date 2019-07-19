@@ -13,10 +13,10 @@
 
     <div class="row second mb-0">
         <div class="col col-md-6  text-center text-white column-head">
-            DOLASCI &nbsp;&nbsp; &nbsp;<span class="text-second">ARIVALS</span>
+            DOLASCI &nbsp;&nbsp;<span class="text-second">ARIVALS</span>
         </div>
         <div class="col col-md-6 text-center text-white column-head">
-            POLASCI &nbsp; &nbsp;<span class="text-second">DEPARTURES</span>
+            POLASCI &nbsp;&nbsp;<span class="text-second">DEPARTURES</span>
         </div>
     </div>
 
@@ -62,10 +62,9 @@
         </div>
         <div class="col col-md-6  p-0">
             <table class="table table-zebra table-borderless">
-
                 <thead>
                 <tr>
-                    <th class>
+                    <th>
                         <strong class="text-white header">Autobusna linija</strong>
                         <br>
                         <span class="text-second header">Bus line</span>
