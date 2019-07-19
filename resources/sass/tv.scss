@@ -1,0 +1,56 @@
+body, main.py-4 {
+  background-color: #4595d2;
+  padding: 0px !important;
+  margin: 0px;
+}
+
+.second {
+  background-color: #02396f;
+
+}
+
+.clock {
+  color: #ffc000;
+  font-size: 3vw;
+  font-family: "Arial Black";
+
+}
+
+
+
+.text-second {
+  color: #ffc000 !important;
+}
+
+
+.column-head {
+  font-size: 2vw;
+}
+
+.header {
+  font-size: 1vw !important;
+  font-family: "Helvetica Neue";
+
+}
+
+th {
+  background-color: #02396f !important;
+  font-size: 1vw;
+  padding-left: 10% !important;
+  font-weight: 900 !important;
+}
+
+td {
+  padding-left: 10% !important;
+}
+
+td {
+  font-size: 1.3vw;
+  color: #fff;
+}
+
+
+.table-zebra tbody tr:nth-of-type(even) {
+    background-color: #02396f;
+}
+

@@ -1,0 +1,11 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Arrival extends Model
+{
+    protected $guarded = ['id'];
+    protected $dates = ['datetime'];
+}
