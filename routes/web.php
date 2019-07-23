@@ -14,7 +14,11 @@
 
 Auth::routes();
 
-Route::get('/dashboard', 'AdminController@index')->name('home');
+Route::get('/test', function (){
+   return bcrypt('123456789');
+});
+
+Route::get('/dashboard', 'c@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::resource('arrival', 'ArivalController');

@@ -4,7 +4,7 @@
             <div class="col  col-md-3 col-sm-12 col-xs-12">
                 <label for="">Grad</label>
                 <input type="text" name="city"
-                       v-model="data.city"
+                           v-model="data.city"
                        class="form-control" >
             </div>
             <div class="col  col-md-3 col-sm-12 col-xs-12">
@@ -13,6 +13,8 @@
                        v-model="data.carrier"
                        class="form-control" >
             </div>
+
+
 
             <div class="col  col-md-3 col-sm-12 col-xs-12">
                 <label for="">Datum i vrijeme</label>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+
     /**
      * Create a new controller instance.
      *
@@ -16,8 +17,8 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
-
+    public function index()
+    {
         return view('dashboard');
     }
 }

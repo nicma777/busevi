@@ -18,7 +18,7 @@ class CreateArrivalsTable extends Migration
             $table->string('city');
             $table->dateTime('datetime');
             $table->string('carrier')->nullable();
-            $table->boolean('status')->default(false);
+            $table->boolean('status')->default(false)->nullable();
             $table->timestamps();
         });
     }
