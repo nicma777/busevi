@@ -28,7 +28,7 @@ class HomeController extends Controller
     {
 
         
-        $arivals = Arrival::where('time', '>=', Carbon::now('Europe/Zagreb'))->orderBy('time')->take(12)->get();
+        $arivals = Arrival::where('time', '>=', Carbon::now('Europe/Zagreb'))->where('status', '!=', '3')->orderBy('time')->take(12)->get();
         $departures = Departure::where('time', '>=', Carbon::now('Europe/Zagreb'))->orderBy('time')->take(12)->get();
 
         return view('home', compact('arivals', 'departures'));
