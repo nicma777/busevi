@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArrivalsTable extends Migration
+class CreateMonthsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateArrivalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('arrivals', function (Blueprint $table) {
+        Schema::create('months', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('city');
-            $table->time('time');
-            $table->string('carrier')->nullable();
-            $table->boolean('status')->default(false)->nullable();
+            $table->string('month');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateArrivalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('arrivals');
+        Schema::dropIfExists('months');
     }
 }

@@ -1,10 +1,11 @@
+
 <?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArrivalsTable extends Migration
+class CreateDaysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +14,9 @@ class CreateArrivalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('arrivals', function (Blueprint $table) {
+        Schema::create('days', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('city');
-            $table->time('time');
-            $table->string('carrier')->nullable();
-            $table->boolean('status')->default(false)->nullable();
+            $table->string('day');
             $table->timestamps();
         });
     }
@@ -26,10 +24,11 @@ class CreateArrivalsTable extends Migration
     /**
      * Reverse the migrations.
      *
+     * 
      * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('arrivals');
+        Schema::dropIfExists('days');
     }
 }

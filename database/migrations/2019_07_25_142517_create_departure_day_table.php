@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArrivalsTable extends Migration
+class CreateDepartureDayTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateArrivalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('arrivals', function (Blueprint $table) {
+        Schema::create('departure_day', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('city');
-            $table->time('time');
-            $table->string('carrier')->nullable();
-            $table->boolean('status')->default(false)->nullable();
+            $table->integer('departure_id')->unsigned();
+            $table->foreign('departure_id')->references('id')->on('departures');
+
+            $table->integer('day_id')->unsigned()->nullable();
+            $table->foreign('day_id')->references('id')->on('days');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateArrivalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('arrivals');
+        Schema::dropIfExists('departure_day');
     }
 }

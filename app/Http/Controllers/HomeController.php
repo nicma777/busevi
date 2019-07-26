@@ -26,8 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $arivals = Arrival::where('datetime', '>=', Carbon::now('Europe/Stockholm'))->orderBy('datetime')->take(12)->get();
-        $departures = Departure::where('datetime', '>=', Carbon::now('Europe/Stockholm'))->orderBy('datetime')->take(12)->get();
+
+        
+        $arivals = Arrival::where('time', '>=', Carbon::now('Europe/Zagreb'))->orderBy('time')->take(12)->get();
+        $departures = Departure::where('time', '>=', Carbon::now('Europe/Zagreb'))->orderBy('time')->take(12)->get();
 
         return view('home', compact('arivals', 'departures'));
     }

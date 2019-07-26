@@ -9,6 +9,9 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
+    public $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    public $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July ', 'August', 'September', 'October', 'November', 'December'];
+
     public function run()
     {
         \App\User::create([
@@ -19,10 +22,23 @@ class DatabaseSeeder extends Seeder
             'remember_token' => str_random(10),
         ]);
 
-     factory(\App\Arrival::class, 200)->create();
- factory(\App\Departure::class, 200)->create();
+        foreach ($this->days as $day) {
+            \App\Days::create([
+                'day' => $day
+            ]);
+        }
 
-       //$this->call(UsersTableSeeder::class);
+        foreach ($this->months as $month) {
+            \App\Months::create([
+                'month' => $month
+            ]);
+        }
+
+
+        factory(\App\Arrival::class, 10)->create();
+        factory(\App\Departure::class, 10)->create();
+
+        //$this->call(UsersTableSeeder::class);
 
     }
 }

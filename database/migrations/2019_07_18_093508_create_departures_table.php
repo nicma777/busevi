@@ -16,7 +16,7 @@ class CreateDeparturesTable extends Migration
         Schema::create('departures', function (Blueprint $table) {
             $table->increments('id');
             $table->string('city');
-            $table->dateTime('datetime');
+            $table->time('time');
             $table->string('carrier')->nullable();
             $table->boolean('status')->default(false)->nullable();
             $table->timestamps();

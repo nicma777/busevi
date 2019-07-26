@@ -11,7 +11,15 @@ window.Vue = require('vue');
 import { Datetime } from 'vue-datetime';
 import 'vue-datetime/dist/vue-datetime.css'
 
+import VueTimepicker from 'vue2-timepicker' //novo
+import Vue from 'vue';
+import VueSweetalert2 from 'vue-sweetalert2';
+
+Vue.component('vuetime', VueTimepicker);
+
 Vue.component('datetime', Datetime);
+
+Vue.use(VueSweetalert2);
 
 import { Settings } from 'luxon'
 

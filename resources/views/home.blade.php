@@ -48,10 +48,12 @@
                         <td>{{ $arival->city }}</td>
                         <td>{{ $arival->carrier }}</td>
                         <td>
-                            @if($arival->status)
+                            @if($arival->status == '1')
                                 <span  class="text-danger delay">DELAY</span>
+                            @elseif($arival->status == '2')
+                            <span  class="text-success ongate">ON GATE</span>
                             @else
-                                <span>{{ \Carbon\Carbon::parse($arival->datetime)->format('H:i') }}</span>
+                                <span>{{ \Carbon\Carbon::parse($arival->time)->format('H:i') }}</span>
                             @endif
                         </td>
 
@@ -90,7 +92,7 @@
                             @if($depatrure->status)
                                 <strong  class="delay">DELAY</strong>
                             @else
-                                <span>{{ \Carbon\Carbon::parse($depatrure->datetime)->format('H:i') }}</span>
+                                <span>{{ \Carbon\Carbon::parse($depatrure->time)->format('H:i') }}</span>
                             @endif
                         </td>
 

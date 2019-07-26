@@ -15,7 +15,7 @@ class ArivalController extends Controller
      */
     public function index()
     {
-        return Arrival::where('datetime', '>=', Carbon::now('Europe/Zagreb'))->orderBy('datetime')->take(50)->get();
+        return Arrival::where('time', '>=', Carbon::now('Europe/Zagreb'))->orderBy('time')->take(50)->get();
 
     }
 
@@ -37,9 +37,8 @@ class ArivalController extends Controller
      */
     public function store(Request $request)
     {
-
         $data = $request->all();
-        $data['datetime'] = Carbon::parse($request->datetime)->timezone('Europe/Zagreb')->toDateTimeString();
+        $data['time'] = Carbon::parse($request->time)->timezone('Europe/Zagreb')->format('H:i');
 
         Arrival::create($data);
         return "Ruta kreirana";
@@ -76,8 +75,8 @@ class ArivalController extends Controller
      */
     public function update(Arrival $arrival, Request $request)
     {
-        return $arrival->update(['status' => !$request->status]);
-
+        $arrival->update(['status' => $request->status]);
+        return view('dashboard');
     }
 
     /**
@@ -88,6 +87,7 @@ class ArivalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Arrival::where('id',$id)->delete();
+        return view('dashboard');
     }
 }
