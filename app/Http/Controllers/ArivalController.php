@@ -38,24 +38,19 @@ class ArivalController extends Controller
     public function store(Request $request)
     {
 
-        $validatedData = $request->validate([
-            'city' => 'required|max:255',
-            'carrier' => 'required',
-            'status' => 'required',
-            'time' => 'required',
-            'days' => 'required',
-        ]);
 
+        $data = $request->except('days');
 
-        $data = $validatedData->except('days');
+        $data['time'] = Carbon::parse($request->time)->timezone('Europe/Zagreb')->format('H:i');
 
-        $data['time'] = Carbon::parse($validatedData->time)->timezone('Europe/Zagreb')->format('H:i');
-
-        $days = Days::findOrFail($validatedData->days);
+        $days = Days::findOrFail($request->days);
 
         $arrival = Arrival::create($data);
 
         $arrival->days()->attach($days);
+
+
+
 
         return "Ruta kreirana";
     }
