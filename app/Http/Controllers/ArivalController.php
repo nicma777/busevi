@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Days;
 use App\Arrival;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -15,8 +16,7 @@ class ArivalController extends Controller
      */
     public function index()
     {
-        return Arrival::where('time', '>=', Carbon::now('Europe/Zagreb'))->orderBy('time')->take(50)->get();
-
+        return Arrival::where('time', '>=', Carbon::now('Europe/Zagreb')->addHour(-1))->orderBy('time')->take(50)->get();
     }
 
     /**
@@ -37,10 +37,26 @@ class ArivalController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        $data['time'] = Carbon::parse($request->time)->timezone('Europe/Zagreb')->format('H:i');
 
-        Arrival::create($data);
+        $validatedData = $request->validate([
+            'city' => 'required|max:255',
+            'carrier' => 'required',
+            'status' => 'required',
+            'time' => 'required',
+            'days' => 'required',
+        ]);
+
+
+        $data = $validatedData->except('days');
+
+        $data['time'] = Carbon::parse($validatedData->time)->timezone('Europe/Zagreb')->format('H:i');
+
+        $days = Days::findOrFail($validatedData->days);
+
+        $arrival = Arrival::create($data);
+
+        $arrival->days()->attach($days);
+
         return "Ruta kreirana";
     }
 
@@ -87,7 +103,7 @@ class ArivalController extends Controller
      */
     public function destroy($id)
     {
-        Arrival::where('id',$id)->delete();
+        Arrival::where('id', $id)->delete();
         return view('dashboard');
     }
 }

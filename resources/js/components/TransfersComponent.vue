@@ -11,7 +11,7 @@
       </div>
 
       <div class="col col-md-3 col-sm-12 col-xs-12">
-        <label for>Datum i vrijeme</label>
+        <label for>Vrijeme</label>
         <datetime type="time" input-class="form-control" v-model="data.time"></datetime>
       </div>
 
@@ -19,7 +19,7 @@
         <label for>Status</label>
 
         <select v-model="data.status" class="form-control" id>
-          <option value>OK</option>
+          <option value="0">OK</option>
           <option value="1">DELAY</option>
           <option value="2">ON GATE</option>
         </select>
@@ -33,6 +33,68 @@
         </button>
       </div>
     </div>
+    <div class="form-row">
+      <div class="col">
+            <p class="dani">Aktivni dani: </p>
+        <input
+          type="checkbox"
+          input-class="form-control"
+          value="1"
+          v-model="data.days"
+          id="mon"
+        >
+        <label for="mon">Ponedeljak</label>
+        <input
+          type="checkbox"
+          input-class="form-control"
+          value="2"
+          v-model="data.days"
+          id="tue"
+        >
+        <label for="tue">Utorak</label>
+        <input
+          type="checkbox"
+          input-class="form-control"
+          value="3"
+          v-model="data.days"
+          id="wed"
+        >
+        <label for="wed">Srijeda</label>
+        <input
+          type="checkbox"
+          input-class="form-control"
+          value="4"
+          v-model="data.days"
+          id="thu"
+        >
+        <label for="thu">Četvrtak</label>
+        <input
+          type="checkbox"
+          input-class="form-control"
+          value="5"
+          v-model="data.days"
+          id="fri"
+        >
+        <label for="fri">Petak</label>
+        <input
+          type="checkbox"
+          input-class="form-control"
+          value="6"
+          v-model="data.days"
+          id="sat"
+        >
+        <label for="sat">Subota</label>
+        <input
+          type="checkbox"
+          input-class="form-control"
+          value="7"
+          v-model="data.days"
+          id="sun"
+        >
+        <label for="sun">Nedelja</label>
+
+      </div>
+    </div>
 
     <div class="row mt-3">
       <div class="col-md-12">
@@ -40,7 +102,6 @@
           <table class="table table-striped" style="width: 100%">
             <thead>
               <tr>
-                <th>Datum</th>
                 <th>Autobusna linija</th>
                 <th>Prijevoznik</th>
                 <th>Vrijeme</th>
@@ -50,7 +111,6 @@
             </thead>
             <tbody>
               <tr v-for="transfer in transfers">
-                <td>{{ transfer.datetime | date }}</td>
                 <td>{{ transfer.city }}</td>
                 <td>{{ transfer.carrier }}</td>
                 <td>{{ transfer.time}}</td>
@@ -61,7 +121,10 @@
                   <span v-else-if="transfer.status == '3'" class="badge badge-info">LEAVE</span>
                 </td>
                 <td class="text-right">
-                  <button class="btn btn-sm btn-secondary" @click="statusChange(transfer.id, 1)">
+                  <button class="btn btn-sm btn-secondary" @click="statusChange(transfer.id, 0)">
+                    <i class="fa fa-check"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger" @click="statusChange(transfer.id, 1)">
                     <i class="fa fa-clock-o"></i>
                   </button>
 
@@ -85,6 +148,7 @@
 </template>
 
 
+
 <script>
 export default {
   mounted() {
@@ -96,8 +160,9 @@ export default {
       data: {
         city: "",
         carrier: "",
-        status: "",
-        time: ""
+        status: "0",
+        time: "",
+        days: []
       },
       transfers: []
     };
@@ -125,11 +190,7 @@ export default {
               this.error = true;
             });
 
-          this.$swal(
-            "Ruta je obrisana!",
-            null,
-            "success"
-          );
+          this.$swal("Ruta je obrisana!", null, "success");
         }
       });
     },
@@ -153,11 +214,7 @@ export default {
               this.error = true;
             });
 
-          this.$swal(
-            "Status je promjenjen!",
-            null,
-            "success"
-          );
+          this.$swal("Status je promjenjen!", null, "success");
         }
       });
     },

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Days;
 use App\Arrival;
 use App\Departure;
 use Carbon\Carbon;
@@ -16,7 +17,7 @@ class DepartureController extends Controller
      */
     public function index()
     {
-        return  Departure::where('datetime', '>=', Carbon::now('Europe/Zagreb'))->orderBy('datetime')->take(50)->get();
+        return  Departure::where('time', '>=', Carbon::now('Europe/Zagreb')->addHour(-1))->orderBy('time')->take(50)->get();
 
     }
 
@@ -39,10 +40,16 @@ class DepartureController extends Controller
     public function store(Request $request)
     {
 
-        $data = $request->all();
-        $data['datetime'] = Carbon::parse($request->datetime)->timezone('Europe/Zagreb')->toDateTimeString();
 
-        Departure::create($data);
+        $data = $request->except('days');
+
+        $data['time'] = Carbon::parse($request->time)->timezone('Europe/Zagreb')->format('H:i');
+
+        $days = Days::findOrFail($request->days);
+
+        $departure = Departure::create($data);
+
+        $departure->days()->attach($days);
 
         return "Ruta kreirana";
 
@@ -79,8 +86,8 @@ class DepartureController extends Controller
      */
     public function update(Departure $departure, Request $request)
     {
-
-        return $departure->update(['status' => !$request->status]);
+        $departure->update(['status' => $request->status]);
+        return view('dashboard');
     }
 
     /**
@@ -91,6 +98,7 @@ class DepartureController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Departure::where('id', $id)->delete();
+        return view('dashboard');
     }
 }

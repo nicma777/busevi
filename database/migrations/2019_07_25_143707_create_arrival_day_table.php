@@ -18,8 +18,8 @@ class CreateArrivalDayTable extends Migration
             $table->integer('arrival_id')->unsigned();
             $table->foreign('arrival_id')->references('id')->on('arrivals');
 
-            $table->integer('day_id')->unsigned()->nullable();
-            $table->foreign('day_id')->references('id')->on('days');
+            $table->integer('days_id')->unsigned()->nullable();
+            $table->foreign('days_id')->references('id')->on('days');
             $table->timestamps();
         });
     }
