@@ -24,12 +24,21 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\User::create([
-            'name' => 'bakula',
-            'email' => 'bakula@tempusmedia.hr',
+            'name' => 'admin',
+            'email' => 'admin@example.com',
             'email_verified_at' => now(),
             'password' => bcrypt('1q2w3e4r5t'),
             'remember_token' => str_random(10),
-            'role' => 'bakula'
+            'role' => 'admin'
+        ]);
+
+        \App\User::create([
+            'name' => 'ante',
+            'email' => 'ante@example.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('1q2w3e4r5t'),
+            'remember_token' => str_random(10),
+            'role' => 'admin'
         ]);
 
         foreach ($this->days as $day) {
