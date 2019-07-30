@@ -1851,6 +1851,150 @@ module.exports = function isBuffer (obj) {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BakulaComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/BakulaComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    this.getTransfers();
+  },
+  data: function data() {
+    return {
+      data: {
+        city: "",
+        carrier: "",
+        status: "0",
+        time: "",
+        days: []
+      },
+      transfers: [],
+      errors: {},
+      error: false
+    };
+  },
+  props: ["type"],
+  methods: {
+    remove: function remove(id) {
+      var _this = this;
+
+      this.$swal({
+        title: "Jeste li sigurni da želite obrisati rutu?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Da!"
+      }).then(function (result) {
+        if (result.value) {
+          axios["delete"]("/" + _this.type + "/" + id).then(function (response) {
+            _this.getTransfers();
+          })["catch"](function (error) {
+            _this.error = true;
+          });
+
+          _this.$swal("Ruta je obrisana!", null, "success");
+        }
+      });
+    },
+    statusChange: function statusChange(id, newStatus) {
+      var _this2 = this;
+
+      this.$swal({
+        title: "Jeste li sigurni?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Da!"
+      }).then(function (result) {
+        if (result.value) {
+          axios.put("/" + _this2.type + "/" + id, {
+            status: newStatus
+          }).then(function (response) {
+            _this2.getTransfers();
+          })["catch"](function (error) {
+            _this2.error = true;
+          });
+
+          _this2.$swal("Status je promjenjen!", null, "success");
+        }
+      });
+    },
+    getTransfers: function getTransfers() {
+      var _this3 = this;
+
+      axios.get("/" + this.type + "/").then(function (response) {
+        _this3.transfers = response.data;
+      })["catch"](function (error) {
+        _this3.error = true;
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TransfersComponent.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TransfersComponent.vue?vue&type=script&lang=js& ***!
@@ -1860,6 +2004,58 @@ module.exports = function isBuffer (obj) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2024,7 +2220,9 @@ __webpack_require__.r(__webpack_exports__);
         time: "",
         days: []
       },
-      transfers: []
+      transfers: [],
+      errors: {},
+      error: false
     };
   },
   props: ["type"],
@@ -2091,6 +2289,7 @@ __webpack_require__.r(__webpack_exports__);
         _this4.getTransfers();
       })["catch"](function (error) {
         _this4.error = true;
+        _this4.errors = error.response.data.errors;
       });
     }
   }
@@ -69428,6 +69627,167 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BakulaComponent.vue?vue&type=template&id=70e3d338&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/BakulaComponent.vue?vue&type=template&id=70e3d338& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "row mt-3" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "table-responsive" }, [
+          _c(
+            "table",
+            {
+              staticClass: "table table-striped",
+              staticStyle: { width: "100%" }
+            },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.transfers, function(transfer) {
+                  return _c("tr", [
+                    _c("td", [_vm._v(_vm._s(transfer.city))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(transfer.carrier))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(transfer.time))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      !transfer.status
+                        ? _c("span", { staticClass: "badge badge-success" }, [
+                            _vm._v("OK")
+                          ])
+                        : transfer.status == "1"
+                        ? _c("span", { staticClass: "badge badge-danger" }, [
+                            _vm._v("DELAY")
+                          ])
+                        : transfer.status == "2"
+                        ? _c("span", { staticClass: "badge badge-success" }, [
+                            _vm._v("ON GATE")
+                          ])
+                        : transfer.status == "3"
+                        ? _c("span", { staticClass: "badge badge-info" }, [
+                            _vm._v("LEAVE")
+                          ])
+                        : _vm._e()
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "text-right" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-sm btn-secondary",
+                          on: {
+                            click: function($event) {
+                              return _vm.statusChange(transfer.id, 0)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fa fa-check" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-sm btn-danger",
+                          on: {
+                            click: function($event) {
+                              return _vm.statusChange(transfer.id, 1)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fa fa-clock-o" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-sm btn-success",
+                          on: {
+                            click: function($event) {
+                              return _vm.statusChange(transfer.id, 2)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fa fa-bus" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-sm btn-info",
+                          on: {
+                            click: function($event) {
+                              return _vm.statusChange(transfer.id, 3)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fa fa-road" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-sm btn-danger",
+                          on: {
+                            click: function($event) {
+                              return _vm.remove(transfer.id)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fa fa-fw fa-trash" })]
+                      )
+                    ])
+                  ])
+                }),
+                0
+              )
+            ]
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Autobusna linija")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Prijevoznik")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Vrijeme")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Status")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-right" }, [_vm._v("Akcija")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TransfersComponent.vue?vue&type=template&id=7a6bf9c0&":
 /*!*********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TransfersComponent.vue?vue&type=template&id=7a6bf9c0& ***!
@@ -69458,6 +69818,7 @@ var render = function() {
             }
           ],
           staticClass: "form-control",
+          class: { "is-invalid": _vm.errors["city"] },
           attrs: { type: "text", name: "city" },
           domProps: { value: _vm.data.city },
           on: {
@@ -69468,7 +69829,16 @@ var render = function() {
               _vm.$set(_vm.data, "city", $event.target.value)
             }
           }
-        })
+        }),
+        _vm._v(" "),
+        _c(
+          "span",
+          { staticClass: "invalid-feedback", attrs: { role: "alert" } },
+          _vm._l(_vm.errors.city, function(error) {
+            return _c("strong", [_vm._v(_vm._s(error))])
+          }),
+          0
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col col-md-3 col-sm-12 col-xs-12" }, [
@@ -69484,6 +69854,7 @@ var render = function() {
             }
           ],
           staticClass: "form-control",
+          class: { "is-invalid": _vm.errors["carrier"] },
           attrs: { type: "text" },
           domProps: { value: _vm.data.carrier },
           on: {
@@ -69494,12 +69865,21 @@ var render = function() {
               _vm.$set(_vm.data, "carrier", $event.target.value)
             }
           }
-        })
+        }),
+        _vm._v(" "),
+        _c(
+          "span",
+          { staticClass: "invalid-feedback", attrs: { role: "alert" } },
+          _vm._l(_vm.errors.carrier, function(error) {
+            return _c("strong", [_vm._v(_vm._s(error))])
+          }),
+          0
+        )
       ]),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "col col-md-3 col-sm-12 col-xs-12" },
+        { staticClass: "col col-md-3 col-sm-12 col-xs-12 is-invalid" },
         [
           _c("label", { attrs: { for: "" } }, [_vm._v("Vrijeme")]),
           _vm._v(" "),
@@ -69512,7 +69892,22 @@ var render = function() {
               },
               expression: "data.time"
             }
-          })
+          }),
+          _vm._v(" "),
+          _vm.errors.time
+            ? _c(
+                "span",
+                {
+                  staticClass: "invalid-feedback",
+                  staticStyle: { display: "block" },
+                  attrs: { role: "alert" }
+                },
+                _vm._l(_vm.errors.time, function(error) {
+                  return _c("strong", [_vm._v(_vm._s(error))])
+                }),
+                0
+              )
+            : _vm._e()
         ],
         1
       ),
@@ -69580,337 +69975,368 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "form-row" }, [
-      _c("div", { staticClass: "col" }, [
-        _c("p", { staticClass: "dani" }, [_vm._v("Aktivni dani: ")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.data.days,
-              expression: "data.days"
-            }
-          ],
-          attrs: {
-            type: "checkbox",
-            "input-class": "form-control",
-            value: "1",
-            id: "mon"
-          },
-          domProps: {
-            checked: Array.isArray(_vm.data.days)
-              ? _vm._i(_vm.data.days, "1") > -1
-              : _vm.data.days
-          },
-          on: {
-            change: function($event) {
-              var $$a = _vm.data.days,
-                $$el = $event.target,
-                $$c = $$el.checked ? true : false
-              if (Array.isArray($$a)) {
-                var $$v = "1",
-                  $$i = _vm._i($$a, $$v)
-                if ($$el.checked) {
-                  $$i < 0 && _vm.$set(_vm.data, "days", $$a.concat([$$v]))
+      _c("div", { staticClass: "col col-md-12 mt-3" }, [
+        _c("div", { staticClass: "form-check form-check-inline" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.data.days,
+                expression: "data.days"
+              }
+            ],
+            staticClass: "form-check-input",
+            class: { "is-invalid": _vm.errors["days"] },
+            attrs: { type: "checkbox", value: "1", id: "mon" },
+            domProps: {
+              checked: Array.isArray(_vm.data.days)
+                ? _vm._i(_vm.data.days, "1") > -1
+                : _vm.data.days
+            },
+            on: {
+              change: function($event) {
+                var $$a = _vm.data.days,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = "1",
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && _vm.$set(_vm.data, "days", $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      _vm.$set(
+                        _vm.data,
+                        "days",
+                        $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                      )
+                  }
                 } else {
-                  $$i > -1 &&
-                    _vm.$set(
-                      _vm.data,
-                      "days",
-                      $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                    )
+                  _vm.$set(_vm.data, "days", $$c)
                 }
-              } else {
-                _vm.$set(_vm.data, "days", $$c)
               }
             }
-          }
-        }),
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            { staticClass: "form-check-label", attrs: { for: "mon" } },
+            [_vm._v("Ponedeljak")]
+          )
+        ]),
         _vm._v(" "),
-        _c("label", { attrs: { for: "mon" } }, [_vm._v("Ponedeljak")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.data.days,
-              expression: "data.days"
-            }
-          ],
-          attrs: {
-            type: "checkbox",
-            "input-class": "form-control",
-            value: "2",
-            id: "tue"
-          },
-          domProps: {
-            checked: Array.isArray(_vm.data.days)
-              ? _vm._i(_vm.data.days, "2") > -1
-              : _vm.data.days
-          },
-          on: {
-            change: function($event) {
-              var $$a = _vm.data.days,
-                $$el = $event.target,
-                $$c = $$el.checked ? true : false
-              if (Array.isArray($$a)) {
-                var $$v = "2",
-                  $$i = _vm._i($$a, $$v)
-                if ($$el.checked) {
-                  $$i < 0 && _vm.$set(_vm.data, "days", $$a.concat([$$v]))
+        _c("div", { staticClass: "form-check form-check-inline" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.data.days,
+                expression: "data.days"
+              }
+            ],
+            staticClass: "form-check-input",
+            class: { "is-invalid": _vm.errors["days"] },
+            attrs: { type: "checkbox", value: "2", id: "tue" },
+            domProps: {
+              checked: Array.isArray(_vm.data.days)
+                ? _vm._i(_vm.data.days, "2") > -1
+                : _vm.data.days
+            },
+            on: {
+              change: function($event) {
+                var $$a = _vm.data.days,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = "2",
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && _vm.$set(_vm.data, "days", $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      _vm.$set(
+                        _vm.data,
+                        "days",
+                        $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                      )
+                  }
                 } else {
-                  $$i > -1 &&
-                    _vm.$set(
-                      _vm.data,
-                      "days",
-                      $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                    )
+                  _vm.$set(_vm.data, "days", $$c)
                 }
-              } else {
-                _vm.$set(_vm.data, "days", $$c)
               }
             }
-          }
-        }),
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            { staticClass: "form-check-label", attrs: { for: "tue" } },
+            [_vm._v("Utorak")]
+          )
+        ]),
         _vm._v(" "),
-        _c("label", { attrs: { for: "tue" } }, [_vm._v("Utorak")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.data.days,
-              expression: "data.days"
-            }
-          ],
-          attrs: {
-            type: "checkbox",
-            "input-class": "form-control",
-            value: "3",
-            id: "wed"
-          },
-          domProps: {
-            checked: Array.isArray(_vm.data.days)
-              ? _vm._i(_vm.data.days, "3") > -1
-              : _vm.data.days
-          },
-          on: {
-            change: function($event) {
-              var $$a = _vm.data.days,
-                $$el = $event.target,
-                $$c = $$el.checked ? true : false
-              if (Array.isArray($$a)) {
-                var $$v = "3",
-                  $$i = _vm._i($$a, $$v)
-                if ($$el.checked) {
-                  $$i < 0 && _vm.$set(_vm.data, "days", $$a.concat([$$v]))
+        _c("div", { staticClass: "form-check form-check-inline" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.data.days,
+                expression: "data.days"
+              }
+            ],
+            staticClass: "form-check-input",
+            class: { "is-invalid": _vm.errors["days"] },
+            attrs: { type: "checkbox", value: "3", id: "wed" },
+            domProps: {
+              checked: Array.isArray(_vm.data.days)
+                ? _vm._i(_vm.data.days, "3") > -1
+                : _vm.data.days
+            },
+            on: {
+              change: function($event) {
+                var $$a = _vm.data.days,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = "3",
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && _vm.$set(_vm.data, "days", $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      _vm.$set(
+                        _vm.data,
+                        "days",
+                        $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                      )
+                  }
                 } else {
-                  $$i > -1 &&
-                    _vm.$set(
-                      _vm.data,
-                      "days",
-                      $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                    )
+                  _vm.$set(_vm.data, "days", $$c)
                 }
-              } else {
-                _vm.$set(_vm.data, "days", $$c)
               }
             }
-          }
-        }),
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            { staticClass: "form-check-label", attrs: { for: "wed" } },
+            [_vm._v("Srijeda")]
+          )
+        ]),
         _vm._v(" "),
-        _c("label", { attrs: { for: "wed" } }, [_vm._v("Srijeda")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.data.days,
-              expression: "data.days"
-            }
-          ],
-          attrs: {
-            type: "checkbox",
-            "input-class": "form-control",
-            value: "4",
-            id: "thu"
-          },
-          domProps: {
-            checked: Array.isArray(_vm.data.days)
-              ? _vm._i(_vm.data.days, "4") > -1
-              : _vm.data.days
-          },
-          on: {
-            change: function($event) {
-              var $$a = _vm.data.days,
-                $$el = $event.target,
-                $$c = $$el.checked ? true : false
-              if (Array.isArray($$a)) {
-                var $$v = "4",
-                  $$i = _vm._i($$a, $$v)
-                if ($$el.checked) {
-                  $$i < 0 && _vm.$set(_vm.data, "days", $$a.concat([$$v]))
+        _c("div", { staticClass: "form-check form-check-inline" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.data.days,
+                expression: "data.days"
+              }
+            ],
+            staticClass: "form-check-input",
+            class: { "is-invalid": _vm.errors["days"] },
+            attrs: { type: "checkbox", value: "4", id: "thu" },
+            domProps: {
+              checked: Array.isArray(_vm.data.days)
+                ? _vm._i(_vm.data.days, "4") > -1
+                : _vm.data.days
+            },
+            on: {
+              change: function($event) {
+                var $$a = _vm.data.days,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = "4",
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && _vm.$set(_vm.data, "days", $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      _vm.$set(
+                        _vm.data,
+                        "days",
+                        $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                      )
+                  }
                 } else {
-                  $$i > -1 &&
-                    _vm.$set(
-                      _vm.data,
-                      "days",
-                      $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                    )
+                  _vm.$set(_vm.data, "days", $$c)
                 }
-              } else {
-                _vm.$set(_vm.data, "days", $$c)
               }
             }
-          }
-        }),
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            { staticClass: "form-check-label", attrs: { for: "thu" } },
+            [_vm._v("Četvrtak")]
+          )
+        ]),
         _vm._v(" "),
-        _c("label", { attrs: { for: "thu" } }, [_vm._v("Četvrtak")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.data.days,
-              expression: "data.days"
-            }
-          ],
-          attrs: {
-            type: "checkbox",
-            "input-class": "form-control",
-            value: "5",
-            id: "fri"
-          },
-          domProps: {
-            checked: Array.isArray(_vm.data.days)
-              ? _vm._i(_vm.data.days, "5") > -1
-              : _vm.data.days
-          },
-          on: {
-            change: function($event) {
-              var $$a = _vm.data.days,
-                $$el = $event.target,
-                $$c = $$el.checked ? true : false
-              if (Array.isArray($$a)) {
-                var $$v = "5",
-                  $$i = _vm._i($$a, $$v)
-                if ($$el.checked) {
-                  $$i < 0 && _vm.$set(_vm.data, "days", $$a.concat([$$v]))
+        _c("div", { staticClass: "form-check form-check-inline" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.data.days,
+                expression: "data.days"
+              }
+            ],
+            staticClass: "form-check-input",
+            class: { "is-invalid": _vm.errors["days"] },
+            attrs: { type: "checkbox", value: "5", id: "fri" },
+            domProps: {
+              checked: Array.isArray(_vm.data.days)
+                ? _vm._i(_vm.data.days, "5") > -1
+                : _vm.data.days
+            },
+            on: {
+              change: function($event) {
+                var $$a = _vm.data.days,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = "5",
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && _vm.$set(_vm.data, "days", $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      _vm.$set(
+                        _vm.data,
+                        "days",
+                        $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                      )
+                  }
                 } else {
-                  $$i > -1 &&
-                    _vm.$set(
-                      _vm.data,
-                      "days",
-                      $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                    )
+                  _vm.$set(_vm.data, "days", $$c)
                 }
-              } else {
-                _vm.$set(_vm.data, "days", $$c)
               }
             }
-          }
-        }),
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            { staticClass: "form-check-label", attrs: { for: "fri" } },
+            [_vm._v("Petak")]
+          )
+        ]),
         _vm._v(" "),
-        _c("label", { attrs: { for: "fri" } }, [_vm._v("Petak")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.data.days,
-              expression: "data.days"
-            }
-          ],
-          attrs: {
-            type: "checkbox",
-            "input-class": "form-control",
-            value: "6",
-            id: "sat"
-          },
-          domProps: {
-            checked: Array.isArray(_vm.data.days)
-              ? _vm._i(_vm.data.days, "6") > -1
-              : _vm.data.days
-          },
-          on: {
-            change: function($event) {
-              var $$a = _vm.data.days,
-                $$el = $event.target,
-                $$c = $$el.checked ? true : false
-              if (Array.isArray($$a)) {
-                var $$v = "6",
-                  $$i = _vm._i($$a, $$v)
-                if ($$el.checked) {
-                  $$i < 0 && _vm.$set(_vm.data, "days", $$a.concat([$$v]))
+        _c("div", { staticClass: "form-check form-check-inline" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.data.days,
+                expression: "data.days"
+              }
+            ],
+            staticClass: "form-check-input",
+            class: { "is-invalid": _vm.errors["days"] },
+            attrs: { type: "checkbox", value: "6", id: "sat" },
+            domProps: {
+              checked: Array.isArray(_vm.data.days)
+                ? _vm._i(_vm.data.days, "6") > -1
+                : _vm.data.days
+            },
+            on: {
+              change: function($event) {
+                var $$a = _vm.data.days,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = "6",
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && _vm.$set(_vm.data, "days", $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      _vm.$set(
+                        _vm.data,
+                        "days",
+                        $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                      )
+                  }
                 } else {
-                  $$i > -1 &&
-                    _vm.$set(
-                      _vm.data,
-                      "days",
-                      $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                    )
+                  _vm.$set(_vm.data, "days", $$c)
                 }
-              } else {
-                _vm.$set(_vm.data, "days", $$c)
               }
             }
-          }
-        }),
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            { staticClass: "form-check-label", attrs: { for: "sat" } },
+            [_vm._v("Subota")]
+          )
+        ]),
         _vm._v(" "),
-        _c("label", { attrs: { for: "sat" } }, [_vm._v("Subota")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.data.days,
-              expression: "data.days"
-            }
-          ],
-          attrs: {
-            type: "checkbox",
-            "input-class": "form-control",
-            value: "7",
-            id: "sun"
-          },
-          domProps: {
-            checked: Array.isArray(_vm.data.days)
-              ? _vm._i(_vm.data.days, "7") > -1
-              : _vm.data.days
-          },
-          on: {
-            change: function($event) {
-              var $$a = _vm.data.days,
-                $$el = $event.target,
-                $$c = $$el.checked ? true : false
-              if (Array.isArray($$a)) {
-                var $$v = "7",
-                  $$i = _vm._i($$a, $$v)
-                if ($$el.checked) {
-                  $$i < 0 && _vm.$set(_vm.data, "days", $$a.concat([$$v]))
+        _c("div", { staticClass: "form-check form-check-inline" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.data.days,
+                expression: "data.days"
+              }
+            ],
+            staticClass: "form-check-input",
+            class: { "is-invalid": _vm.errors["days"] },
+            attrs: { type: "checkbox", value: "7", id: "sun" },
+            domProps: {
+              checked: Array.isArray(_vm.data.days)
+                ? _vm._i(_vm.data.days, "7") > -1
+                : _vm.data.days
+            },
+            on: {
+              change: function($event) {
+                var $$a = _vm.data.days,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = "7",
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && _vm.$set(_vm.data, "days", $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      _vm.$set(
+                        _vm.data,
+                        "days",
+                        $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                      )
+                  }
                 } else {
-                  $$i > -1 &&
-                    _vm.$set(
-                      _vm.data,
-                      "days",
-                      $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                    )
+                  _vm.$set(_vm.data, "days", $$c)
                 }
-              } else {
-                _vm.$set(_vm.data, "days", $$c)
               }
             }
-          }
-        }),
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            { staticClass: "form-check-label", attrs: { for: "sun" } },
+            [_vm._v("Nedelja")]
+          )
+        ]),
         _vm._v(" "),
-        _c("label", { attrs: { for: "sun" } }, [_vm._v("Nedelja")])
+        _vm.errors.days
+          ? _c(
+              "span",
+              {
+                staticClass: "invalid-feedback",
+                staticStyle: { display: "block" },
+                attrs: { role: "alert" }
+              },
+              [_c("strong", [_vm._v("Odaberite barem jedan dan.")])]
+            )
+          : _vm._e()
       ])
     ]),
     _vm._v(" "),
@@ -82726,6 +83152,7 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.filter('time', function (value) {
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('transfers', __webpack_require__(/*! ./components/TransfersComponent.vue */ "./resources/js/components/TransfersComponent.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('bakula', __webpack_require__(/*! ./components/BakulaComponent.vue */ "./resources/js/components/BakulaComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -82794,6 +83221,75 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/BakulaComponent.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/BakulaComponent.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _BakulaComponent_vue_vue_type_template_id_70e3d338___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BakulaComponent.vue?vue&type=template&id=70e3d338& */ "./resources/js/components/BakulaComponent.vue?vue&type=template&id=70e3d338&");
+/* harmony import */ var _BakulaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BakulaComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/BakulaComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _BakulaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _BakulaComponent_vue_vue_type_template_id_70e3d338___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _BakulaComponent_vue_vue_type_template_id_70e3d338___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/BakulaComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/BakulaComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/BakulaComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BakulaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./BakulaComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BakulaComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BakulaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/BakulaComponent.vue?vue&type=template&id=70e3d338&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/BakulaComponent.vue?vue&type=template&id=70e3d338& ***!
+  \************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BakulaComponent_vue_vue_type_template_id_70e3d338___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./BakulaComponent.vue?vue&type=template&id=70e3d338& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BakulaComponent.vue?vue&type=template&id=70e3d338&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BakulaComponent_vue_vue_type_template_id_70e3d338___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BakulaComponent_vue_vue_type_template_id_70e3d338___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

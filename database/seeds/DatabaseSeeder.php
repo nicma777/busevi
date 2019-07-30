@@ -20,6 +20,16 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => bcrypt('1q2w3e4r5t'),
             'remember_token' => str_random(10),
+            'role' => 'admin'
+        ]);
+
+        \App\User::create([
+            'name' => 'bakula',
+            'email' => 'bakula@tempusmedia.hr',
+            'email_verified_at' => now(),
+            'password' => bcrypt('1q2w3e4r5t'),
+            'remember_token' => str_random(10),
+            'role' => 'bakula'
         ]);
 
         foreach ($this->days as $day) {

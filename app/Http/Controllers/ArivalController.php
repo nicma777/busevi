@@ -6,6 +6,7 @@ use App\Days;
 use App\Arrival;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Http\Requests\TransferRequest;
 
 class ArivalController extends Controller
 {
@@ -35,7 +36,7 @@ class ArivalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TransferRequest $request)
     {
 
 
@@ -48,9 +49,6 @@ class ArivalController extends Controller
         $arrival = Arrival::create($data);
 
         $arrival->days()->attach($days);
-
-
-
 
         return "Ruta kreirana";
     }
@@ -87,7 +85,7 @@ class ArivalController extends Controller
     public function update(Arrival $arrival, Request $request)
     {
         $arrival->update(['status' => $request->status]);
-        return view('dashboard');
+        return "promjenjeno";
     }
 
     /**
@@ -99,6 +97,6 @@ class ArivalController extends Controller
     public function destroy($id)
     {
         Arrival::where('id', $id)->delete();
-        return view('dashboard');
+        return "promjenjeno";
     }
 }

@@ -3,16 +3,45 @@
     <div class="form-row">
       <div class="col col-md-3 col-sm-12 col-xs-12">
         <label for>Grad</label>
-        <input type="text" name="city" v-model="data.city" class="form-control">
-      </div>
-      <div class="col col-md-3 col-sm-12 col-xs-12">
-        <label for>Prijevoznik</label>
-        <input type="text" v-model="data.carrier" class="form-control">
+        <input
+          type="text"
+          name="city"
+          v-model="data.city"
+          class="form-control"
+          :class="{ 'is-invalid': errors['city'] }"
+        >
+
+        <span class="invalid-feedback" role="alert">
+          <strong v-for="error in errors.city">{{ error }}</strong>
+        </span>
       </div>
 
       <div class="col col-md-3 col-sm-12 col-xs-12">
+        <label for>Prijevoznik</label>
+        <input
+          type="text"
+          v-model="data.carrier"
+          class="form-control"
+          :class="{ 'is-invalid': errors['carrier'] }"
+        >
+
+        <span class="invalid-feedback" role="alert">
+          <strong v-for="error in errors.carrier">{{ error }}</strong>
+        </span>
+      </div>
+
+      <div class="col col-md-3 col-sm-12 col-xs-12 is-invalid">
         <label for>Vrijeme</label>
-        <datetime type="time" input-class="form-control" v-model="data.time"></datetime>
+
+        <datetime
+          type="time"
+          v-model="data.time"
+          input-class="form-control"
+        ></datetime>
+
+        <span v-if="errors.time" role="alert" class="invalid-feedback" style="display: block">
+          <strong v-for="error in errors.time">{{ error }}</strong>
+        </span>
       </div>
 
       <div class="col col-md-2 col-sm-12 col-xs-12">
@@ -34,65 +63,88 @@
       </div>
     </div>
     <div class="form-row">
-      <div class="col">
-            <p class="dani">Aktivni dani: </p>
-        <input
-          type="checkbox"
-          input-class="form-control"
-          value="1"
-          v-model="data.days"
-          id="mon"
-        >
-        <label for="mon">Ponedeljak</label>
-        <input
-          type="checkbox"
-          input-class="form-control"
-          value="2"
-          v-model="data.days"
-          id="tue"
-        >
-        <label for="tue">Utorak</label>
-        <input
-          type="checkbox"
-          input-class="form-control"
-          value="3"
-          v-model="data.days"
-          id="wed"
-        >
-        <label for="wed">Srijeda</label>
-        <input
-          type="checkbox"
-          input-class="form-control"
-          value="4"
-          v-model="data.days"
-          id="thu"
-        >
-        <label for="thu">Četvrtak</label>
-        <input
-          type="checkbox"
-          input-class="form-control"
-          value="5"
-          v-model="data.days"
-          id="fri"
-        >
-        <label for="fri">Petak</label>
-        <input
-          type="checkbox"
-          input-class="form-control"
-          value="6"
-          v-model="data.days"
-          id="sat"
-        >
-        <label for="sat">Subota</label>
-        <input
-          type="checkbox"
-          input-class="form-control"
-          value="7"
-          v-model="data.days"
-          id="sun"
-        >
-        <label for="sun">Nedelja</label>
+      <div class="col col-md-12 mt-3">
+        <div class="form-check form-check-inline">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            :class="{ 'is-invalid': errors['days'] }"
+            value="1"
+            v-model="data.days"
+            id="mon"
+          >
+          <label for="mon" class="form-check-label">Ponedeljak</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            :class="{ 'is-invalid': errors['days'] }"
+            value="2"
+            v-model="data.days"
+            id="tue"
+          >
+          <label for="tue" class="form-check-label">Utorak</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            :class="{ 'is-invalid': errors['days'] }"
+            value="3"
+            v-model="data.days"
+            id="wed"
+          >
+          <label for="wed" class="form-check-label">Srijeda</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            :class="{ 'is-invalid': errors['days'] }"
+            value="4"
+            v-model="data.days"
+            id="thu"
+          >
+          <label for="thu" class="form-check-label">Četvrtak</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            :class="{ 'is-invalid': errors['days'] }"
+            value="5"
+            v-model="data.days"
+            id="fri"
+          >
+          <label for="fri" class="form-check-label">Petak</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            :class="{ 'is-invalid': errors['days'] }"
+            value="6"
+            v-model="data.days"
+            id="sat"
+          >
+          <label for="sat" class="form-check-label">Subota</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            :class="{ 'is-invalid': errors['days'] }"
+            value="7"
+            v-model="data.days"
+            id="sun"
+          >
+          <label for="sun" class="form-check-label">Nedelja</label>
+        </div>
 
+        <span v-if="errors.days" role="alert" class="invalid-feedback" style="display: block">
+          <strong>Odaberite barem jedan dan.</strong>
+        </span>
       </div>
     </div>
 
@@ -164,7 +216,9 @@ export default {
         time: "",
         days: []
       },
-      transfers: []
+      transfers: [],
+      errors: {},
+      error: false
     };
   },
 
@@ -238,6 +292,7 @@ export default {
         })
         .catch(error => {
           this.error = true;
+          this.errors = error.response.data.errors;
         });
     }
   }

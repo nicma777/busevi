@@ -54,6 +54,7 @@ Vue.filter('time', function(value) {
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('transfers', require('./components/TransfersComponent.vue').default);
+Vue.component('bakula', require('./components/BakulaComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

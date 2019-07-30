@@ -7,6 +7,7 @@ use App\Arrival;
 use App\Departure;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Http\Requests\TransferRequest;
 
 class DepartureController extends Controller
 {
@@ -37,7 +38,7 @@ class DepartureController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TransferRequest $request)
     {
 
 
@@ -87,7 +88,7 @@ class DepartureController extends Controller
     public function update(Departure $departure, Request $request)
     {
         $departure->update(['status' => $request->status]);
-        return view('dashboard');
+        return "promjenjeno";
     }
 
     /**
@@ -99,6 +100,6 @@ class DepartureController extends Controller
     public function destroy($id)
     {
         Departure::where('id', $id)->delete();
-        return view('dashboard');
+        return "promjenjeno";
     }
 }

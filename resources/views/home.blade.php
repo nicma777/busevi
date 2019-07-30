@@ -4,7 +4,7 @@
 
     <div class="row header p-2 pr-2">
         <div class="col-md-8">
-
+            <img src="http://www.atpsi.hr/images/logo_atpsi.png" alt="">
         </div>
         <div class="col-md-4 pr-2 second clock text-center">
             {{ \Carbon\Carbon::now()->format('d.m.Y. H:i') }}
