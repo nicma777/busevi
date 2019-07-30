@@ -132,7 +132,7 @@ export default {
 
     getTransfers() {
       axios
-        .get("/" + this.type + "/")
+        .get("/" + this.type + "/bakula/")
         .then(response => {
           this.transfers = response.data;
         })

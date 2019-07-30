@@ -1989,7 +1989,7 @@ __webpack_require__.r(__webpack_exports__);
     getTransfers: function getTransfers() {
       var _this3 = this;
 
-      axios.get("/" + this.type + "/").then(function (response) {
+      axios.get("/" + this.type + "/bakula/").then(function (response) {
         _this3.transfers = response.data;
       })["catch"](function (error) {
         _this3.error = true;

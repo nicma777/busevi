@@ -16,7 +16,7 @@ class CreateDepartureDayTable extends Migration
         Schema::create('departure_day', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('departure_id')->unsigned();
-            $table->foreign('departure_id')->references('id')->on('departures');
+            $table->foreign('departure_id')->references('id')->on('departures')->onDelete('cascade');
 
             $table->integer('days_id')->unsigned()->nullable();
             $table->foreign('days_id')->references('id')->on('days');

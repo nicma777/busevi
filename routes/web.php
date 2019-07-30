@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,13 +16,17 @@
 
 Auth::routes();
 
-Route::get('/test', function (){
+Route::get('/test', function () {
    return bcrypt('123456789');
 });
+
+
+Route::get('/arrival/bakula/', 'ArivalController@bakula');
+Route::get('/departure/bakula/', 'DepartureController@bakula');
+
 
 Route::get('/dashboard', 'AdminController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::resource('arrival', 'ArivalController');
 Route::resource('departure', 'DepartureController');
-

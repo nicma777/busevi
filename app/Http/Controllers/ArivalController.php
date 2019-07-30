@@ -20,6 +20,19 @@ class ArivalController extends Controller
         return Arrival::with('days')->orderBy('time')->get();
     }
 
+    public function bakula()
+    {
+        $day_id = Days::where('day', Carbon::now()->isoFormat('dddd'))->pluck('id')->first();
+                
+        return Arrival::whereHas('days', function($q) use ($day_id){
+            $q->where('days_id',$day_id);
+            })->where('time', '>=', Carbon::now('Europe/Zagreb'))
+            ->where('status', '!=', '3')
+            ->orderBy('time')
+            ->take(12)
+            ->get();
+    }
+
     /**
      * Show the form for creating a new resource.
      *
