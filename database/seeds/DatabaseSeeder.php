@@ -10,6 +10,7 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    public $days_hr = ['Pon', 'Uto', 'Sri', 'Čet', 'Pet', 'Sub', 'Ned'];
     public $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July ', 'August', 'September', 'October', 'November', 'December'];
 
     public function run()
@@ -27,7 +28,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@example.com',
             'email_verified_at' => now(),
-            'password' => bcrypt('1q2w3e4r5t'),
+            'password' => bcrypt('koloDVOR123'),
             'remember_token' => str_random(10),
             'role' => 'admin'
         ]);
@@ -36,15 +37,25 @@ class DatabaseSeeder extends Seeder
             'name' => 'ante',
             'email' => 'ante@example.com',
             'email_verified_at' => now(),
-            'password' => bcrypt('1q2w3e4r5t'),
+            'password' => bcrypt('koloDVOR123'),
             'remember_token' => str_random(10),
             'role' => 'admin'
         ]);
 
-        foreach ($this->days as $day) {
+        \App\User::create([
+            'name' => 'tablet',
+            'email' => 'tablet@example.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('koloDVOR123'),
+            'remember_token' => str_random(10),
+            'role' => 'admin'
+        ]);
+
+        for($i = 0; $i < 7; $i++){
             \App\Days::create([
-                'day' => $day
-            ]);
+                 'day' => $this->days[$i],
+                 'day_hr' => $this->days_hr[$i]
+                 ]);
         }
 
         foreach ($this->months as $month) {
@@ -54,8 +65,8 @@ class DatabaseSeeder extends Seeder
         }
 
 
-        factory(\App\Arrival::class, 10)->create();
-        factory(\App\Departure::class, 10)->create();
+        //factory(\App\Arrival::class, 10)->create();
+        //factory(\App\Departure::class, 10)->create();
 
         //$this->call(UsersTableSeeder::class);
 

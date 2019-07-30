@@ -33,11 +33,7 @@
       <div class="col col-md-3 col-sm-12 col-xs-12 is-invalid">
         <label for>Vrijeme</label>
 
-        <datetime
-          type="time"
-          v-model="data.time"
-          input-class="form-control"
-        ></datetime>
+        <datetime type="time" v-model="data.time" input-class="form-control"></datetime>
 
         <span v-if="errors.time" role="alert" class="invalid-feedback" style="display: block">
           <strong v-for="error in errors.time">{{ error }}</strong>
@@ -157,6 +153,7 @@
                 <th>Autobusna linija</th>
                 <th>Prijevoznik</th>
                 <th>Vrijeme</th>
+                <th>Dani</th>
                 <th>Status</th>
                 <th class="text-right">Akcija</th>
               </tr>
@@ -166,6 +163,10 @@
                 <td>{{ transfer.city }}</td>
                 <td>{{ transfer.carrier }}</td>
                 <td>{{ transfer.time}}</td>
+                <td>
+                  <span v-for="day in transfer.days">{{day.day_hr}} &nbsp;</span>
+                  
+                </td>
                 <td>
                   <span v-if="!transfer.status" class="badge badge-success">OK</span>
                   <span v-else-if="transfer.status == '1'" class="badge badge-danger">DELAY</span>
@@ -288,7 +289,16 @@ export default {
       axios
         .post("/" + this.type + "/", this.data)
         .then(response => {
+          this.$swal("Ruta je unesena!", null, "success");
           this.getTransfers();
+          this.data = {
+            city: "",
+            carrier: "",
+            status: "0",
+            time: "",
+            days: []
+          };
+          this.errors = {};
         })
         .catch(error => {
           this.error = true;

@@ -18,8 +18,7 @@ class DepartureController extends Controller
      */
     public function index()
     {
-        return  Departure::where('time', '>=', Carbon::now('Europe/Zagreb')->addHour(-1))->orderBy('time')->take(50)->get();
-
+        return Departure::with('days')->orderBy('time')->get();
     }
 
     /**

@@ -17,7 +17,7 @@ class ArivalController extends Controller
      */
     public function index()
     {
-        return Arrival::where('time', '>=', Carbon::now('Europe/Zagreb')->addHour(-1))->orderBy('time')->take(50)->get();
+        return Arrival::with('days')->orderBy('time')->get();
     }
 
     /**

@@ -1915,6 +1915,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.getTransfers();
@@ -2207,6 +2212,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.getTransfers();
@@ -2286,7 +2292,18 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       axios.post("/" + this.type + "/", this.data).then(function (response) {
+        _this4.$swal("Ruta je unesena!", null, "success");
+
         _this4.getTransfers();
+
+        _this4.data = {
+          city: "",
+          carrier: "",
+          status: "0",
+          time: "",
+          days: []
+        };
+        _this4.errors = {};
       })["catch"](function (error) {
         _this4.error = true;
         _this4.errors = error.response.data.errors;
@@ -69665,6 +69682,14 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(transfer.time))]),
                     _vm._v(" "),
+                    _c(
+                      "td",
+                      _vm._l(transfer.days, function(day) {
+                        return _c("span", [_vm._v(_vm._s(day.day_hr) + "  ")])
+                      }),
+                      0
+                    ),
+                    _vm._v(" "),
                     _c("td", [
                       !transfer.status
                         ? _c("span", { staticClass: "badge badge-success" }, [
@@ -69774,6 +69799,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Prijevoznik")]),
         _vm._v(" "),
         _c("th", [_vm._v("Vrijeme")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Dani")]),
         _vm._v(" "),
         _c("th", [_vm._v("Status")]),
         _vm._v(" "),
@@ -70362,6 +70389,14 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(transfer.time))]),
                     _vm._v(" "),
+                    _c(
+                      "td",
+                      _vm._l(transfer.days, function(day) {
+                        return _c("span", [_vm._v(_vm._s(day.day_hr) + "  ")])
+                      }),
+                      0
+                    ),
+                    _vm._v(" "),
                     _c("td", [
                       !transfer.status
                         ? _c("span", { staticClass: "badge badge-success" }, [
@@ -70471,6 +70506,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Prijevoznik")]),
         _vm._v(" "),
         _c("th", [_vm._v("Vrijeme")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Dani")]),
         _vm._v(" "),
         _c("th", [_vm._v("Status")]),
         _vm._v(" "),

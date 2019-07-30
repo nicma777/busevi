@@ -9,6 +9,7 @@
                 <th>Autobusna linija</th>
                 <th>Prijevoznik</th>
                 <th>Vrijeme</th>
+                <th>Dani</th>
                 <th>Status</th>
                 <th class="text-right">Akcija</th>
               </tr>
@@ -18,6 +19,10 @@
                 <td>{{ transfer.city }}</td>
                 <td>{{ transfer.carrier }}</td>
                 <td>{{ transfer.time}}</td>
+                <td>
+                  <span v-for="day in transfer.days">{{day.day_hr}} &nbsp;</span>
+                  
+                </td>
                 <td>
                   <span v-if="!transfer.status" class="badge badge-success">OK</span>
                   <span v-else-if="transfer.status == '1'" class="badge badge-danger">DELAY</span>
@@ -134,8 +139,7 @@ export default {
         .catch(error => {
           this.error = true;
         });
-    },
-
+    }
   }
 };
 </script>
