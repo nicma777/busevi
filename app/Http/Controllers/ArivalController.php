@@ -29,7 +29,6 @@ class ArivalController extends Controller
             $q->where('days_id',$day_id);
             })->where('time', '>=', Carbon::now('Europe/Zagreb'))
             ->where('status', '!=', '3')
-            ->where('activity', '=', '1')
             ->orderBy('time')
             ->take(12)
             ->get();
@@ -38,7 +37,6 @@ class ArivalController extends Controller
                 $q->where('days_id',$second_day_id);
                 })->where('time', '<', '01:00:00')
                 ->where('status', '!=', '3')
-                ->where('activity', '=', '1')
                 ->orderBy('time')
                 ->take(12)
                 ->get();

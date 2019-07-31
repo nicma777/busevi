@@ -1920,6 +1920,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.getTransfers();
@@ -1931,6 +1944,7 @@ __webpack_require__.r(__webpack_exports__);
         carrier: "",
         status: "0",
         time: "",
+        activity: "1",
         days: []
       },
       transfers: [],
@@ -1986,13 +2000,24 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    getTransfers: function getTransfers() {
+    activityChange: function activityChange(id, newActivity) {
       var _this3 = this;
 
-      axios.get("/" + this.type + "/bakula/").then(function (response) {
-        _this3.transfers = response.data;
+      axios.put("/" + this.type + "/" + id, {
+        activity: newActivity
+      }).then(function (response) {
+        _this3.getTransfers();
       })["catch"](function (error) {
         _this3.error = true;
+      });
+    },
+    getTransfers: function getTransfers() {
+      var _this4 = this;
+
+      axios.get("/" + this.type + "/bakula/").then(function (response) {
+        _this4.transfers = response.data;
+      })["catch"](function (error) {
+        _this4.error = true;
       });
     }
   }
@@ -69736,6 +69761,38 @@ var render = function() {
                         : _vm._e()
                     ]),
                     _vm._v(" "),
+                    _c("td", [
+                      _c("span", [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-success",
+                            class: [transfer.activity ? "active" : "disabled"],
+                            on: {
+                              click: function($event) {
+                                return _vm.activityChange(transfer.id, 1)
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fa fa-check" })]
+                        ),
+                        _vm._v(" / \n                    "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-danger",
+                            class: [!transfer.activity ? "active" : "disabled"],
+                            on: {
+                              click: function($event) {
+                                return _vm.activityChange(transfer.id, 0)
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fa fa-times" })]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
                     _c("td", { staticClass: "text-right" }, [
                       _c(
                         "button",
@@ -69829,6 +69886,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Dani")]),
         _vm._v(" "),
         _c("th", [_vm._v("Status")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Activity")]),
         _vm._v(" "),
         _c("th", { staticClass: "text-right" }, [_vm._v("Akcija")])
       ])
