@@ -130,13 +130,14 @@
           <input
             type="checkbox"
             class="form-check-input"
-            :class="{ 'is-invalid': errors['days'] }"
+            :class="{ 'is-invalid': errors['days']}"
             value="7"
             v-model="data.days"
             id="sun"
           >
           <label for="sun" class="form-check-label">Nedelja</label>
         </div>
+        <button class="btn btn-sm btn-primary" @click="selectAll()">Odaberi sve</button>
 
         <span v-if="errors.days" role="alert" class="invalid-feedback" style="display: block">
           <strong>Odaberite barem jedan dan.</strong>
@@ -166,7 +167,6 @@
                 <td>{{ transfer.time}}</td>
                 <td>
                   <span v-for="day in transfer.days">{{day.day_hr}} &nbsp;</span>
-                  
                 </td>
                 <td>
                   <span v-if="!transfer.status" class="badge badge-success">OK</span>
@@ -176,33 +176,39 @@
                 </td>
                 <td>
                   <span>
-                      <button class="btn btn-sm btn-success" v-bind:class="[ transfer.activity ? 'active' : 'disabled']"
-                      @click="activityChange(transfer.id, 1)" >
-                      <i class="fa fa-check"></i> 
-                      </button> / 
-                      <button class="btn btn-sm btn-danger" v-bind:class="[ !transfer.activity ? 'active' : 'disabled']"
+                    <button
+                      class="btn btn-sm btn-success"
+                      v-bind:class="[ transfer.activity ? 'active' : 'disabled']"
+                      @click="activityChange(transfer.id, 1)">
+                      <i class="fa fa-check"></i>
+                    </button>
+                    <button
+                      class="btn btn-sm btn-danger"
+                      v-bind:class="[ !transfer.activity ? 'active' : 'disabled']"
                       @click="activityChange(transfer.id, 0)">
-                       <i class="fa fa-times"></i>
-                      </button>
+                      <i class="fa fa-times"></i>
+                    </button>
                   </span>
                 </td>
                 <td class="text-right">
-                  <button class="btn btn-sm btn-secondary" @click="statusChange(transfer.id, 0)">
-                    <i class="fa fa-check"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger" @click="statusChange(transfer.id, 1)">
-                    <i class="fa fa-clock-o"></i>
-                  </button>
+                  <div class="btn-group">
+                    <button class="btn btn-sm btn-secondary" @click="statusChange(transfer.id, 0)">
+                      <i class="fa fa-thumbs-o-up"></i>
+                    </button>
+                    <button class="btn btn-sm btn-danger" @click="statusChange(transfer.id, 1)">
+                      <i class="fa fa-clock-o"></i>
+                    </button>
 
-                  <button class="btn btn-sm btn-success" @click="statusChange(transfer.id, 2)">
-                    <i class="fa fa-bus"></i>
-                  </button>
-                  <button class="btn btn-sm btn-info" @click="statusChange(transfer.id, 3)">
-                    <i class="fa fa-road"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger" @click="remove(transfer.id)">
-                    <i class="fa fa-fw fa-trash"></i>
-                  </button>
+                    <button class="btn btn-sm btn-success" @click="statusChange(transfer.id, 2)">
+                      <i class="fa fa-bus"></i>
+                    </button>
+                    <button class="btn btn-sm btn-info" @click="statusChange(transfer.id, 3)">
+                      <i class="fa fa-road"></i>
+                    </button>
+                    <button class="btn btn-sm btn-danger" @click="remove(transfer.id)">
+                      <i class="fa fa-fw fa-trash"></i>
+                    </button>
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -233,7 +239,8 @@ export default {
       },
       transfers: [],
       errors: {},
-      error: false
+      error: false,
+      allSelected: false
     };
   },
 
@@ -264,39 +271,30 @@ export default {
       });
     },
 
-    statusChange(id, newStatus) {
-      this.$swal({
-        title: "Jeste li sigurni?",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Da!"
-      }).then(result => {
-        if (result.value) {
-          axios
-            .put("/" + this.type + "/" + id, { status: newStatus })
-            .then(response => {
-              this.getTransfers();
-            })
-            .catch(error => {
-              this.error = true;
-            });
-
-          this.$swal("Status je promjenjen!", null, "success");
-        }
-      });
+    selectAll() {
+      this.data.days = [1, 2, 3, 4, 5, 6, 7];
     },
 
-     activityChange(id, newActivity) {
-          axios
-            .put("/" + this.type + "/" + id, { activity: newActivity })
-            .then(response => {
-              this.getTransfers();
-            })
-            .catch(error => {
-              this.error = true;
-            });
+    statusChange(id, newStatus) {
+      axios
+        .put("/" + this.type + "/" + id, { status: newStatus })
+        .then(response => {
+          this.getTransfers();
+        })
+        .catch(error => {
+          this.error = true;
+        });
+    },
+
+    activityChange(id, newActivity) {
+      axios
+        .put("/" + this.type + "/" + id, { activity: newActivity })
+        .then(response => {
+          this.getTransfers();
+        })
+        .catch(error => {
+          this.error = true;
+        });
     },
 
     getTransfers() {

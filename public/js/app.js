@@ -1933,6 +1933,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.getTransfers();
@@ -1979,25 +1981,12 @@ __webpack_require__.r(__webpack_exports__);
     statusChange: function statusChange(id, newStatus) {
       var _this2 = this;
 
-      this.$swal({
-        title: "Jeste li sigurni?",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Da!"
-      }).then(function (result) {
-        if (result.value) {
-          axios.put("/" + _this2.type + "/" + id, {
-            status: newStatus
-          }).then(function (response) {
-            _this2.getTransfers();
-          })["catch"](function (error) {
-            _this2.error = true;
-          });
-
-          _this2.$swal("Status je promjenjen!", null, "success");
-        }
+      axios.put("/" + this.type + "/" + id, {
+        status: newStatus
+      }).then(function (response) {
+        _this2.getTransfers();
+      })["catch"](function (error) {
+        _this2.error = true;
       });
     },
     activityChange: function activityChange(id, newActivity) {
@@ -2251,6 +2240,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.getTransfers();
@@ -2267,7 +2262,8 @@ __webpack_require__.r(__webpack_exports__);
       },
       transfers: [],
       errors: {},
-      error: false
+      error: false,
+      allSelected: false
     };
   },
   props: ["type"],
@@ -2294,28 +2290,18 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
+    selectAll: function selectAll() {
+      this.data.days = [1, 2, 3, 4, 5, 6, 7];
+    },
     statusChange: function statusChange(id, newStatus) {
       var _this2 = this;
 
-      this.$swal({
-        title: "Jeste li sigurni?",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Da!"
-      }).then(function (result) {
-        if (result.value) {
-          axios.put("/" + _this2.type + "/" + id, {
-            status: newStatus
-          }).then(function (response) {
-            _this2.getTransfers();
-          })["catch"](function (error) {
-            _this2.error = true;
-          });
-
-          _this2.$swal("Status je promjenjen!", null, "success");
-        }
+      axios.put("/" + this.type + "/" + id, {
+        status: newStatus
+      }).then(function (response) {
+        _this2.getTransfers();
+      })["catch"](function (error) {
+        _this2.error = true;
       });
     },
     activityChange: function activityChange(id, newActivity) {
@@ -69776,7 +69762,7 @@ var render = function() {
                           },
                           [_c("i", { staticClass: "fa fa-check" })]
                         ),
-                        _vm._v(" / \n                    "),
+                        _vm._v(" "),
                         _c(
                           "button",
                           {
@@ -69794,70 +69780,72 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("td", { staticClass: "text-right" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-sm btn-secondary",
-                          on: {
-                            click: function($event) {
-                              return _vm.statusChange(transfer.id, 0)
+                      _c("div", { staticClass: "btn-group" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-secondary",
+                            on: {
+                              click: function($event) {
+                                return _vm.statusChange(transfer.id, 0)
+                              }
                             }
-                          }
-                        },
-                        [_c("i", { staticClass: "fa fa-check" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-sm btn-danger",
-                          on: {
-                            click: function($event) {
-                              return _vm.statusChange(transfer.id, 1)
+                          },
+                          [_c("i", { staticClass: "fa fa-thumbs-o-up" })]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-danger",
+                            on: {
+                              click: function($event) {
+                                return _vm.statusChange(transfer.id, 1)
+                              }
                             }
-                          }
-                        },
-                        [_c("i", { staticClass: "fa fa-clock-o" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-sm btn-success",
-                          on: {
-                            click: function($event) {
-                              return _vm.statusChange(transfer.id, 2)
+                          },
+                          [_c("i", { staticClass: "fa fa-clock-o" })]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-success",
+                            on: {
+                              click: function($event) {
+                                return _vm.statusChange(transfer.id, 2)
+                              }
                             }
-                          }
-                        },
-                        [_c("i", { staticClass: "fa fa-bus" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-sm btn-info",
-                          on: {
-                            click: function($event) {
-                              return _vm.statusChange(transfer.id, 3)
+                          },
+                          [_c("i", { staticClass: "fa fa-bus" })]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-info",
+                            on: {
+                              click: function($event) {
+                                return _vm.statusChange(transfer.id, 3)
+                              }
                             }
-                          }
-                        },
-                        [_c("i", { staticClass: "fa fa-road" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-sm btn-danger",
-                          on: {
-                            click: function($event) {
-                              return _vm.remove(transfer.id)
+                          },
+                          [_c("i", { staticClass: "fa fa-road" })]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-danger",
+                            on: {
+                              click: function($event) {
+                                return _vm.remove(transfer.id)
+                              }
                             }
-                          }
-                        },
-                        [_c("i", { staticClass: "fa fa-fw fa-trash" })]
-                      )
+                          },
+                          [_c("i", { staticClass: "fa fa-fw fa-trash" })]
+                        )
+                      ])
                     ])
                   ])
                 }),
@@ -70438,6 +70426,19 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-sm btn-primary",
+            on: {
+              click: function($event) {
+                return _vm.selectAll()
+              }
+            }
+          },
+          [_vm._v("Odaberi sve")]
+        ),
+        _vm._v(" "),
         _vm.errors.days
           ? _c(
               "span",
@@ -70517,7 +70518,7 @@ var render = function() {
                           },
                           [_c("i", { staticClass: "fa fa-check" })]
                         ),
-                        _vm._v(" / \n                    "),
+                        _vm._v(" "),
                         _c(
                           "button",
                           {
@@ -70535,70 +70536,72 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("td", { staticClass: "text-right" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-sm btn-secondary",
-                          on: {
-                            click: function($event) {
-                              return _vm.statusChange(transfer.id, 0)
+                      _c("div", { staticClass: "btn-group" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-secondary",
+                            on: {
+                              click: function($event) {
+                                return _vm.statusChange(transfer.id, 0)
+                              }
                             }
-                          }
-                        },
-                        [_c("i", { staticClass: "fa fa-check" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-sm btn-danger",
-                          on: {
-                            click: function($event) {
-                              return _vm.statusChange(transfer.id, 1)
+                          },
+                          [_c("i", { staticClass: "fa fa-thumbs-o-up" })]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-danger",
+                            on: {
+                              click: function($event) {
+                                return _vm.statusChange(transfer.id, 1)
+                              }
                             }
-                          }
-                        },
-                        [_c("i", { staticClass: "fa fa-clock-o" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-sm btn-success",
-                          on: {
-                            click: function($event) {
-                              return _vm.statusChange(transfer.id, 2)
+                          },
+                          [_c("i", { staticClass: "fa fa-clock-o" })]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-success",
+                            on: {
+                              click: function($event) {
+                                return _vm.statusChange(transfer.id, 2)
+                              }
                             }
-                          }
-                        },
-                        [_c("i", { staticClass: "fa fa-bus" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-sm btn-info",
-                          on: {
-                            click: function($event) {
-                              return _vm.statusChange(transfer.id, 3)
+                          },
+                          [_c("i", { staticClass: "fa fa-bus" })]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-info",
+                            on: {
+                              click: function($event) {
+                                return _vm.statusChange(transfer.id, 3)
+                              }
                             }
-                          }
-                        },
-                        [_c("i", { staticClass: "fa fa-road" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-sm btn-danger",
-                          on: {
-                            click: function($event) {
-                              return _vm.remove(transfer.id)
+                          },
+                          [_c("i", { staticClass: "fa fa-road" })]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-danger",
+                            on: {
+                              click: function($event) {
+                                return _vm.remove(transfer.id)
+                              }
                             }
-                          }
-                        },
-                        [_c("i", { staticClass: "fa fa-fw fa-trash" })]
-                      )
+                          },
+                          [_c("i", { staticClass: "fa fa-fw fa-trash" })]
+                        )
+                      ])
                     ])
                   ])
                 }),

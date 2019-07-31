@@ -35,7 +35,7 @@
                       <button class="btn btn-sm btn-success" v-bind:class="[ transfer.activity ? 'active' : 'disabled']"
                       @click="activityChange(transfer.id, 1)" >
                       <i class="fa fa-check"></i> 
-                      </button> / 
+                      </button> 
                       <button class="btn btn-sm btn-danger" v-bind:class="[ !transfer.activity ? 'active' : 'disabled']"
                       @click="activityChange(transfer.id, 0)">
                        <i class="fa fa-times"></i>
@@ -43,8 +43,9 @@
                   </span>
                 </td>
                 <td class="text-right">
+                  <div class="btn-group">
                   <button class="btn btn-sm btn-secondary" @click="statusChange(transfer.id, 0)">
-                    <i class="fa fa-check"></i>
+                    <i class="fa fa-thumbs-o-up"></i>
                   </button>
                   <button class="btn btn-sm btn-danger" @click="statusChange(transfer.id, 1)">
                     <i class="fa fa-clock-o"></i>
@@ -59,6 +60,7 @@
                   <button class="btn btn-sm btn-danger" @click="remove(transfer.id)">
                     <i class="fa fa-fw fa-trash"></i>
                   </button>
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -121,15 +123,6 @@ export default {
     },
 
     statusChange(id, newStatus) {
-      this.$swal({
-        title: "Jeste li sigurni?",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Da!"
-      }).then(result => {
-        if (result.value) {
           axios
             .put("/" + this.type + "/" + id, { status: newStatus })
             .then(response => {
@@ -138,10 +131,6 @@ export default {
             .catch(error => {
               this.error = true;
             });
-
-          this.$swal("Status je promjenjen!", null, "success");
-        }
-      });
     },
 
     activityChange(id, newActivity) {
