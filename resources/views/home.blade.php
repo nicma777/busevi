@@ -90,8 +90,10 @@
                     <td>{{ $depatrure->city }}</td>
                     <td>{{ $depatrure->carrier }}</td>
                     <td>
-                        @if($depatrure->status)
-                        <strong class="delay">DELAY</strong>
+                        @if($depatrure->status == '1')
+                        <span class="text-danger delay">DELAY</span>
+                        @elseif($depatrure->status == '2')
+                        <span class="text-success ongate">ON GATE</span>
                         @else
                         <span>{{ \Carbon\Carbon::parse($depatrure->time)->format('H:i') }}</span>
                         @endif

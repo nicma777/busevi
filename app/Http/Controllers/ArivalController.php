@@ -23,14 +23,29 @@ class ArivalController extends Controller
     public function bakula()
     {
         $day_id = Days::where('day', Carbon::now()->isoFormat('dddd'))->pluck('id')->first();
+        $second_day_id = $day_id != 7 ? ($day_id + 1) : ($second_day_id = 1);
                 
-        return Arrival::whereHas('days', function($q) use ($day_id){
+        $arivals = Arrival::whereHas('days', function($q) use ($day_id){
             $q->where('days_id',$day_id);
             })->where('time', '>=', Carbon::now('Europe/Zagreb'))
             ->where('status', '!=', '3')
+            ->where('activity', '=', '1')
             ->orderBy('time')
             ->take(12)
             ->get();
+
+        $arivals_tommorow = Arrival::whereHas('days', function($q) use ($second_day_id){
+                $q->where('days_id',$second_day_id);
+                })->where('time', '<', '01:00:00')
+                ->where('status', '!=', '3')
+                ->where('activity', '=', '1')
+                ->orderBy('time')
+                ->take(12)
+                ->get();
+        
+        $arivals = $arivals->merge($arivals_tommorow);
+        return $arivals;
+
     }
 
     /**
@@ -97,7 +112,8 @@ class ArivalController extends Controller
      */
     public function update(Arrival $arrival, Request $request)
     {
-        $arrival->update(['status' => $request->status]);
+        $request->status !== null ? $arrival->update(['status' => $request->status]) : '';
+        $request->activity !== null ? $arrival->update(['activity' => $request->activity]) : '';
         return "promjenjeno";
     }
 

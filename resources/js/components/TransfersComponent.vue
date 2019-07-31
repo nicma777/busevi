@@ -155,6 +155,7 @@
                 <th>Vrijeme</th>
                 <th>Dani</th>
                 <th>Status</th>
+                <th>Activity</th>
                 <th class="text-right">Akcija</th>
               </tr>
             </thead>
@@ -172,6 +173,18 @@
                   <span v-else-if="transfer.status == '1'" class="badge badge-danger">DELAY</span>
                   <span v-else-if="transfer.status == '2'" class="badge badge-success">ON GATE</span>
                   <span v-else-if="transfer.status == '3'" class="badge badge-info">LEAVE</span>
+                </td>
+                <td>
+                  <span>
+                      <button class="btn btn-sm btn-success" v-bind:class="[ transfer.activity ? 'active' : 'disabled']"
+                      @click="activityChange(transfer.id, 1)" >
+                      <i class="fa fa-check"></i> 
+                      </button> / 
+                      <button class="btn btn-sm btn-danger" v-bind:class="[ !transfer.activity ? 'active' : 'disabled']"
+                      @click="activityChange(transfer.id, 0)">
+                       <i class="fa fa-times"></i>
+                      </button>
+                  </span>
                 </td>
                 <td class="text-right">
                   <button class="btn btn-sm btn-secondary" @click="statusChange(transfer.id, 0)">
@@ -215,6 +228,7 @@ export default {
         carrier: "",
         status: "0",
         time: "",
+        activity: "1",
         days: []
       },
       transfers: [],
@@ -274,6 +288,17 @@ export default {
       });
     },
 
+     activityChange(id, newActivity) {
+          axios
+            .put("/" + this.type + "/" + id, { activity: newActivity })
+            .then(response => {
+              this.getTransfers();
+            })
+            .catch(error => {
+              this.error = true;
+            });
+    },
+
     getTransfers() {
       axios
         .get("/" + this.type + "/")
@@ -296,6 +321,7 @@ export default {
             carrier: "",
             status: "0",
             time: "",
+            activity: "1",
             days: []
           };
           this.errors = {};

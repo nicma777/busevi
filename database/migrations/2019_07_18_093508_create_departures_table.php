@@ -18,7 +18,8 @@ class CreateDeparturesTable extends Migration
             $table->string('city');
             $table->time('time');
             $table->string('carrier')->nullable();
-            $table->boolean('status')->default(false)->nullable();
+            $table->boolean('status')->default('0')->nullable();
+            $table->boolean('activity')->default('1');
             $table->timestamps();
         });
     }
