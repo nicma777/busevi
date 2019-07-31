@@ -31,7 +31,7 @@
                   <span v-else-if="transfer.status == '3'" class="badge badge-info">LEAVE</span>
                 </td>
                 <td>
-                  <span>
+                  <div class="btn-group">
                       <button class="btn btn-sm btn-success" v-bind:class="[ transfer.activity ? 'active' : 'disabled']"
                       @click="activityChange(transfer.id, 1)" >
                       <i class="fa fa-check"></i> 
@@ -40,7 +40,7 @@
                       @click="activityChange(transfer.id, 0)">
                        <i class="fa fa-times"></i>
                       </button>
-                  </span>
+                  </div>
                 </td>
                 <td class="text-right">
                   <div class="btn-group">

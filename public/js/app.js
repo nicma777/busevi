@@ -69748,7 +69748,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _c("span", [
+                      _c("div", { staticClass: "btn-group" }, [
                         _c(
                           "button",
                           {
@@ -70504,7 +70504,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _c("span", [
+                      _c("div", { staticClass: "btn-group" }, [
                         _c(
                           "button",
                           {
