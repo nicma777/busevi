@@ -4,8 +4,8 @@
 
 <div class="row header p-2 pr-2">
     <div class="col-md-8">
-        <img src="http://www.gradski-parking.hr/tpl/stil/img/gradski_parking_sibenik_logo.png" alt=""
-            style="width: 40%">
+        <img src="{{ asset("autobusni-kolodvor-sibenik.png") }}" alt=""
+            style="width: 60%">
     </div>
     <div class="col-md-4 pr-2 second clock text-center">
         {{ \Carbon\Carbon::now()->format('d.m.Y. H:i') }}
