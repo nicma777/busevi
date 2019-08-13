@@ -4,8 +4,7 @@
 
 <div class="row header p-2 pr-2">
     <div class="col-md-8">
-        <img src="{{ asset("autobusni-kolodvor-sibenik.png") }}" alt=""
-            style="width: 60%">
+        <img src="{{ asset("autobusni-kolodvor-sibenik.png") }}" alt="" style="width: 60%">
     </div>
     <div class="col-md-4 pr-2 second clock text-center">
         {{ \Carbon\Carbon::now()->format('d.m.Y. H:i') }}
@@ -53,6 +52,8 @@
                         <span class="text-danger delay">DELAY</span>
                         @elseif($arival->status == '2')
                         <span class="text-success ongate">ON GATE</span>
+                        @elseif($arival->status == '3')
+                        <span class="text-white">LEAVE</span>
                         @else
                         <span>{{ \Carbon\Carbon::parse($arival->time)->format('H:i') }}</span>
                         @endif

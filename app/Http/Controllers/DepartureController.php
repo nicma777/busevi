@@ -28,21 +28,23 @@ class DepartureController extends Controller
 
         $departures = Departure::with('days')->whereHas('days', function($q) use ($day_id){
             $q->where('days_id',$day_id);
-            })->where('time', '>=', Carbon::now('Europe/Zagreb'))
-            ->where('status', '!=', '3')
+            })->where('time', '>=', Carbon::now('Europe/Zagreb')->addMinutes(-5))
             ->orderBy('time')
             ->take(12)
             ->get();
 
-        $departures_tommorow = Departure::with('days')->whereHas('days', function($q) use ($second_day_id){
-            $q->where('days_id',$second_day_id);
-            })->where('time', '<', '01:00:00')
-            ->where('status', '!=', '3')
-            ->orderBy('time')
-            ->take(12)
-            ->get();
+            if(Carbon::now('Europe/Zagreb')->format('H:i:s') > '23:00:00' && Carbon::now('Europe/Zagreb')->format('H:i:s') < '24:00:00'){
+                $departures_tommorow = Departure::with('days')->whereHas('days', function($q) use ($second_day_id){
+                $q->where('days_id',$second_day_id);
+                })->where('time', '<', '01:00:00')
+                ->where('status', '!=', '3')
+                ->orderBy('time')
+                ->take(12)
+                ->get();
+            $departures = $departures->merge($departures_tommorow);
+        }
 
-        return $departures = $departures->merge($departures_tommorow);
+        return $departures;
     }
 
     /**
