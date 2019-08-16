@@ -13,6 +13,10 @@ main.py-4 {
   margin: 0px;
 }
 
+main {
+  width: 99.1% !important;
+}
+
 .second {
   background-color: #02396f;
 }

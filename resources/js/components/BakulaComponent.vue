@@ -9,9 +9,7 @@
                 <th>Autobusna linija</th>
                 <th>Prijevoznik</th>
                 <th>Vrijeme</th>
-                <th>Dani</th>
                 <th>Status</th>
-                <th>Activity</th>
                 <th class="text-right">Akcija</th>
               </tr>
             </thead>
@@ -20,45 +18,27 @@
                 <td>{{ transfer.city }}</td>
                 <td>{{ transfer.carrier }}</td>
                 <td>{{ transfer.time}}</td>
-                <td>
-                  <span v-for="day in transfer.days">{{day.day_hr}} &nbsp;</span>
-                  
-                </td>
+
                 <td>
                   <span v-if="!transfer.status" class="badge badge-success">OK</span>
                   <span v-else-if="transfer.status == '1'" class="badge badge-danger">DELAY</span>
                   <span v-else-if="transfer.status == '2'" class="badge badge-success">ON GATE</span>
                   <span v-else-if="transfer.status == '3'" class="badge badge-info">LEAVE</span>
                 </td>
-                <td>
-                  <div class="btn-group">
-                      <button class="btn btn-sm btn-success" v-bind:class="[ transfer.activity ? 'active' : 'disabled']"
-                      @click="activityChange(transfer.id, 1)" >
-                      <i class="fa fa-check"></i> 
-                      </button> 
-                      <button class="btn btn-sm btn-danger" v-bind:class="[ !transfer.activity ? 'active' : 'disabled']"
-                      @click="activityChange(transfer.id, 0)">
-                       <i class="fa fa-times"></i>
-                      </button>
-                  </div>
-                </td>
                 <td class="text-right">
                   <div class="btn-group">
                   <button class="btn btn-sm btn-secondary" @click="statusChange(transfer.id, 0)">
-                    <i class="fa fa-thumbs-o-up"></i>
+                    OK
                   </button>
                   <button class="btn btn-sm btn-danger" @click="statusChange(transfer.id, 1)">
-                    <i class="fa fa-clock-o"></i>
+                    DELAY
                   </button>
 
                   <button class="btn btn-sm btn-success" @click="statusChange(transfer.id, 2)">
-                    <i class="fa fa-bus"></i>
+                    ON GATE
                   </button>
                   <button class="btn btn-sm btn-info" @click="statusChange(transfer.id, 3)">
-                    <i class="fa fa-road"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger" @click="remove(transfer.id)">
-                    <i class="fa fa-fw fa-trash"></i>
+                    LEAVE
                   </button>
                   </div>
                 </td>

@@ -1915,26 +1915,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.getTransfers();
@@ -69719,14 +69699,6 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(transfer.time))]),
                     _vm._v(" "),
-                    _c(
-                      "td",
-                      _vm._l(transfer.days, function(day) {
-                        return _c("span", [_vm._v(_vm._s(day.day_hr) + "  ")])
-                      }),
-                      0
-                    ),
-                    _vm._v(" "),
                     _c("td", [
                       !transfer.status
                         ? _c("span", { staticClass: "badge badge-success" }, [
@@ -69747,38 +69719,6 @@ var render = function() {
                         : _vm._e()
                     ]),
                     _vm._v(" "),
-                    _c("td", [
-                      _c("div", { staticClass: "btn-group" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-sm btn-success",
-                            class: [transfer.activity ? "active" : "disabled"],
-                            on: {
-                              click: function($event) {
-                                return _vm.activityChange(transfer.id, 1)
-                              }
-                            }
-                          },
-                          [_c("i", { staticClass: "fa fa-check" })]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-sm btn-danger",
-                            class: [!transfer.activity ? "active" : "disabled"],
-                            on: {
-                              click: function($event) {
-                                return _vm.activityChange(transfer.id, 0)
-                              }
-                            }
-                          },
-                          [_c("i", { staticClass: "fa fa-times" })]
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
                     _c("td", { staticClass: "text-right" }, [
                       _c("div", { staticClass: "btn-group" }, [
                         _c(
@@ -69791,7 +69731,7 @@ var render = function() {
                               }
                             }
                           },
-                          [_c("i", { staticClass: "fa fa-thumbs-o-up" })]
+                          [_vm._v("\n                  OK\n                ")]
                         ),
                         _vm._v(" "),
                         _c(
@@ -69804,7 +69744,11 @@ var render = function() {
                               }
                             }
                           },
-                          [_c("i", { staticClass: "fa fa-clock-o" })]
+                          [
+                            _vm._v(
+                              "\n                  DELAY\n                "
+                            )
+                          ]
                         ),
                         _vm._v(" "),
                         _c(
@@ -69817,7 +69761,11 @@ var render = function() {
                               }
                             }
                           },
-                          [_c("i", { staticClass: "fa fa-bus" })]
+                          [
+                            _vm._v(
+                              "\n                  ON GATE\n                "
+                            )
+                          ]
                         ),
                         _vm._v(" "),
                         _c(
@@ -69830,20 +69778,11 @@ var render = function() {
                               }
                             }
                           },
-                          [_c("i", { staticClass: "fa fa-road" })]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-sm btn-danger",
-                            on: {
-                              click: function($event) {
-                                return _vm.remove(transfer.id)
-                              }
-                            }
-                          },
-                          [_c("i", { staticClass: "fa fa-fw fa-trash" })]
+                          [
+                            _vm._v(
+                              "\n                  LEAVE\n                "
+                            )
+                          ]
                         )
                       ])
                     ])
@@ -69871,11 +69810,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Vrijeme")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Dani")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Status")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Activity")]),
         _vm._v(" "),
         _c("th", { staticClass: "text-right" }, [_vm._v("Akcija")])
       ])

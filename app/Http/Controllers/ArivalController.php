@@ -28,15 +28,17 @@ class ArivalController extends Controller
         $arivals = Arrival::with('days')->whereHas('days', function($q) use ($day_id){
             $q->where('days_id',$day_id);
             })->where('time', '>=', Carbon::now('Europe/Zagreb')->addMinutes(-5))
+            ->where('activity', '=', '1')
             ->orderBy('time')
             ->take(12)
             ->get();
 
         if(Carbon::now('Europe/Zagreb')->format('H:i:s') > '23:00:00' && Carbon::now('Europe/Zagreb')->format('H:i:s') < '24:00:00'){
-            $arivals_tommorow = Arrival::with('days')->whereHas('days', function($q) use ($second_day_id){
+            $arivals_tommorow = Arrival::whereHas('days', function($q) use ($second_day_id){
                     $q->where('days_id',$second_day_id);
                     })->where('time', '<', '01:00:00')
                     ->where('status', '!=', '3')
+                    ->where('activity', '=', '1')
                     ->orderBy('time')
                     ->take(12)
                     ->get();
