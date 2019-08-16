@@ -7,25 +7,18 @@
             <thead>
               <tr>
                 <th>Autobusna linija</th>
-                <th>Prijevoznik</th>
                 <th>Vrijeme</th>
+                <th>Akcija</th>
+                <th>Prijevoznik</th>
+                
                 <th>Status</th>
-                <th class="text-right">Akcija</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="transfer in transfers">
                 <td>{{ transfer.city }}</td>
-                <td>{{ transfer.carrier }}</td>
                 <td>{{ transfer.time}}</td>
-
                 <td>
-                  <span v-if="!transfer.status" class="badge badge-success">OK</span>
-                  <span v-else-if="transfer.status == '1'" class="badge badge-danger">DELAY</span>
-                  <span v-else-if="transfer.status == '2'" class="badge badge-success">ON GATE</span>
-                  <span v-else-if="transfer.status == '3'" class="badge badge-info">LEAVE</span>
-                </td>
-                <td class="text-right">
                   <div class="btn-group">
                   <button class="btn btn-sm btn-secondary" @click="statusChange(transfer.id, 0)">
                     OK
@@ -42,6 +35,14 @@
                   </button>
                   </div>
                 </td>
+                <td>{{ transfer.carrier }}</td>
+                <td>
+                  <span v-if="!transfer.status" class="badge badge-success">OK</span>
+                  <span v-else-if="transfer.status == '1'" class="badge badge-danger">DELAY</span>
+                  <span v-else-if="transfer.status == '2'" class="badge badge-success">ON GATE</span>
+                  <span v-else-if="transfer.status == '3'" class="badge badge-info">LEAVE</span>
+                </td>
+              
               </tr>
             </tbody>
           </table>

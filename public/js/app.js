@@ -1915,6 +1915,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.getTransfers();
@@ -69695,31 +69696,9 @@ var render = function() {
                   return _c("tr", [
                     _c("td", [_vm._v(_vm._s(transfer.city))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(transfer.carrier))]),
-                    _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(transfer.time))]),
                     _vm._v(" "),
                     _c("td", [
-                      !transfer.status
-                        ? _c("span", { staticClass: "badge badge-success" }, [
-                            _vm._v("OK")
-                          ])
-                        : transfer.status == "1"
-                        ? _c("span", { staticClass: "badge badge-danger" }, [
-                            _vm._v("DELAY")
-                          ])
-                        : transfer.status == "2"
-                        ? _c("span", { staticClass: "badge badge-success" }, [
-                            _vm._v("ON GATE")
-                          ])
-                        : transfer.status == "3"
-                        ? _c("span", { staticClass: "badge badge-info" }, [
-                            _vm._v("LEAVE")
-                          ])
-                        : _vm._e()
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "text-right" }, [
                       _c("div", { staticClass: "btn-group" }, [
                         _c(
                           "button",
@@ -69785,6 +69764,28 @@ var render = function() {
                           ]
                         )
                       ])
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(transfer.carrier))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      !transfer.status
+                        ? _c("span", { staticClass: "badge badge-success" }, [
+                            _vm._v("OK")
+                          ])
+                        : transfer.status == "1"
+                        ? _c("span", { staticClass: "badge badge-danger" }, [
+                            _vm._v("DELAY")
+                          ])
+                        : transfer.status == "2"
+                        ? _c("span", { staticClass: "badge badge-success" }, [
+                            _vm._v("ON GATE")
+                          ])
+                        : transfer.status == "3"
+                        ? _c("span", { staticClass: "badge badge-info" }, [
+                            _vm._v("LEAVE")
+                          ])
+                        : _vm._e()
                     ])
                   ])
                 }),
@@ -69806,13 +69807,13 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Autobusna linija")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Prijevoznik")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Vrijeme")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Status")]),
+        _c("th", [_vm._v("Akcija")]),
         _vm._v(" "),
-        _c("th", { staticClass: "text-right" }, [_vm._v("Akcija")])
+        _c("th", [_vm._v("Prijevoznik")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Status")])
       ])
     ])
   }
