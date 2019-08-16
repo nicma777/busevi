@@ -47,6 +47,9 @@ class ArivalController extends Controller
                 }
         
         
+            foreach($arivals as $arival){
+                $arival->time = \Carbon\Carbon::parse($arival->time)->format('H:i');
+            }
             return $arivals;
 
     }

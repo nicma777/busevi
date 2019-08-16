@@ -46,6 +46,10 @@ class DepartureController extends Controller
             $departures = $departures->merge($departures_tommorow);
         }
 
+        foreach($departures as $departure){
+                $departure->time = \Carbon\Carbon::parse($departure->time)->format('H:i');
+            }
+
         return $departures;
     }
 

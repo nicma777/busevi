@@ -17,7 +17,7 @@
             <tbody>
               <tr v-for="transfer in transfers">
                 <td>{{ transfer.city }}</td>
-                <td>{{ transfer.time}}</td>
+                <td>{{ transfer.time }}</td>
                 <td>
                   <div class="btn-group">
                   <button class="btn btn-sm btn-secondary" @click="statusChange(transfer.id, 0)">
