@@ -1911,11 +1911,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.getTransfers();
@@ -69703,7 +69698,7 @@ var render = function() {
                         _c(
                           "button",
                           {
-                            staticClass: "btn btn-sm btn-secondary",
+                            staticClass: "btn btn-sm btn-secondary pl-3 pr-3",
                             on: {
                               click: function($event) {
                                 return _vm.statusChange(transfer.id, 0)
@@ -69742,24 +69737,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                  ON GATE\n                "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-sm btn-info",
-                            on: {
-                              click: function($event) {
-                                return _vm.statusChange(transfer.id, 3)
-                              }
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n                  LEAVE\n                "
+                              "\n                  ARRIVED\n                "
                             )
                           ]
                         )
@@ -69779,11 +69757,7 @@ var render = function() {
                           ])
                         : transfer.status == "2"
                         ? _c("span", { staticClass: "badge badge-success" }, [
-                            _vm._v("ON GATE")
-                          ])
-                        : transfer.status == "3"
-                        ? _c("span", { staticClass: "badge badge-info" }, [
-                            _vm._v("LEAVE")
+                            _vm._v("ARRIVED")
                           ])
                         : _vm._e()
                     ])
@@ -69987,7 +69961,7 @@ var render = function() {
             _vm._v(" "),
             _c("option", { attrs: { value: "1" } }, [_vm._v("DELAY")]),
             _vm._v(" "),
-            _c("option", { attrs: { value: "2" } }, [_vm._v("ON GATE")])
+            _c("option", { attrs: { value: "2" } }, [_vm._v("ARRIVED")])
           ]
         )
       ]),
@@ -70430,7 +70404,7 @@ var render = function() {
                           ])
                         : transfer.status == "2"
                         ? _c("span", { staticClass: "badge badge-success" }, [
-                            _vm._v("ON GATE")
+                            _vm._v("ARRIVED")
                           ])
                         : transfer.status == "3"
                         ? _c("span", { staticClass: "badge badge-info" }, [

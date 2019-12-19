@@ -51,7 +51,7 @@
                         @if($arival->status == '1')
                         <span class="text-danger delay">DELAY</span>
                         @elseif($arival->status == '2')
-                        <span class="text-success ongate">ON GATE</span>
+                        <span class="text-success ongate">ARRIVED</span>
                         @elseif($arival->status == '3')
                         <span class="text-white">LEAVE</span>
                         @else
@@ -94,7 +94,7 @@
                         @if($depatrure->status == '1')
                         <span class="text-danger delay">DELAY</span>
                         @elseif($depatrure->status == '2')
-                        <span class="text-success ongate">ON GATE</span>
+                        <span class="text-success ongate">ARRIVED</span>
                         @else
                         <span>{{ \Carbon\Carbon::parse($depatrure->time)->format('H:i') }}</span>
                         @endif

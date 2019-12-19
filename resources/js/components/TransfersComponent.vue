@@ -46,7 +46,7 @@
         <select v-model="data.status" class="form-control" id>
           <option value="0">OK</option>
           <option value="1">DELAY</option>
-          <option value="2">ON GATE</option>
+          <option value="2">ARRIVED</option>
         </select>
       </div>
 
@@ -171,7 +171,7 @@
                 <td>
                   <span v-if="!transfer.status" class="badge badge-success">OK</span>
                   <span v-else-if="transfer.status == '1'" class="badge badge-danger">DELAY</span>
-                  <span v-else-if="transfer.status == '2'" class="badge badge-success">ON GATE</span>
+                  <span v-else-if="transfer.status == '2'" class="badge badge-success">ARRIVED</span>
                   <span v-else-if="transfer.status == '3'" class="badge badge-info">LEAVE</span>
                 </td>
                 <td>

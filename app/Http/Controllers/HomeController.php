@@ -28,7 +28,7 @@ class HomeController extends Controller
     public function index()
     {
         
-            //return Carbon::now('Europe/Zagreb')->addHours(9)->format('H:i:s');
+        //return Carbon::now('Europe/Zagreb')->addHours(9)->format('H:i:s');
        
         
         $day_id = Days::where('day', Carbon::now()->isoFormat('dddd'))->pluck('id')->first();
@@ -64,6 +64,10 @@ class HomeController extends Controller
             ->orderBy('time')
             ->take(12)
             ->get();
+        
+        $departures_delayed = Departure::where('status', 1)->get();
+
+        $departures = $departures->merge($departures_delayed);
 
         if(Carbon::now('Europe/Zagreb')->format('H:i:s') > '23:00:00' && Carbon::now('Europe/Zagreb')->format('H:i:s') < '24:00:00'){
             $departures_tommorow = Departure::whereHas('days', function($q) use ($second_day_id){
@@ -78,6 +82,19 @@ class HomeController extends Controller
                 $departures = $departures->merge($departures_tommorow);
             }
 
+         foreach($arivals as $arival){
+             if($arival->time < Carbon::now('Europe/Zagreb')->format('H:i:s') && $arival->status == 0){
+                 $arival->status = 1;
+             }
+         }
+
+         foreach($departures as $departure){
+             if($departure->time < Carbon::now('Europe/Zagreb')->format('H:i:s') && $departure->status == 0){
+                 $departure->status = 1;
+             }
+         }
+         
+         $departures = $departures->sortBy('time');
 
         return view('home', compact('arivals', 'departures'));
     }

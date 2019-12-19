@@ -10,7 +10,6 @@
                 <th>Vrijeme</th>
                 <th>Akcija</th>
                 <th>Prijevoznik</th>
-                
                 <th>Status</th>
               </tr>
             </thead>
@@ -20,7 +19,7 @@
                 <td>{{ transfer.time }}</td>
                 <td>
                   <div class="btn-group">
-                  <button class="btn btn-sm btn-secondary" @click="statusChange(transfer.id, 0)">
+                  <button class="btn btn-sm btn-secondary pl-3 pr-3" @click="statusChange(transfer.id, 0)">
                     OK
                   </button>
                   <button class="btn btn-sm btn-danger" @click="statusChange(transfer.id, 1)">
@@ -28,10 +27,7 @@
                   </button>
 
                   <button class="btn btn-sm btn-success" @click="statusChange(transfer.id, 2)">
-                    ON GATE
-                  </button>
-                  <button class="btn btn-sm btn-info" @click="statusChange(transfer.id, 3)">
-                    LEAVE
+                    ARRIVED
                   </button>
                   </div>
                 </td>
@@ -39,10 +35,9 @@
                 <td>
                   <span v-if="!transfer.status" class="badge badge-success">OK</span>
                   <span v-else-if="transfer.status == '1'" class="badge badge-danger">DELAY</span>
-                  <span v-else-if="transfer.status == '2'" class="badge badge-success">ON GATE</span>
-                  <span v-else-if="transfer.status == '3'" class="badge badge-info">LEAVE</span>
+                  <span v-else-if="transfer.status == '2'" class="badge badge-success">ARRIVED</span>
                 </td>
-              
+                
               </tr>
             </tbody>
           </table>
