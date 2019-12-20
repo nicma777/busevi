@@ -28,6 +28,7 @@ class ArivalController extends Controller
         $arivals = Arrival::with('days')->whereHas('days', function($q) use ($day_id){
             $q->where('days_id',$day_id);
             })->where('time', '>=', Carbon::now('Europe/Zagreb')->addMinutes(-5))
+            ->orWhere('status', '!=', 2)
             ->where('activity', '=', '1')
             ->orderBy('time')
             ->take(12)

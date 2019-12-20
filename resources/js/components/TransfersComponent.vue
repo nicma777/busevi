@@ -164,15 +164,16 @@
               <tr v-for="transfer in transfers">
                 <td>{{ transfer.city }}</td>
                 <td>{{ transfer.carrier }}</td>
-                <td>{{ transfer.time}}</td>
+                <td>{{ transfer.time }}</td>
                 <td>
                   <span v-for="day in transfer.days">{{day.day_hr}} &nbsp;</span>
                 </td>
                 <td>
                   <span v-if="!transfer.status" class="badge badge-success">OK</span>
                   <span v-else-if="transfer.status == '1'" class="badge badge-danger">DELAY</span>
-                  <span v-else-if="transfer.status == '2'" class="badge badge-success">ARRIVED</span>
-                  <span v-else-if="transfer.status == '3'" class="badge badge-info">LEAVE</span>
+                  <span v-else-if="transfer.status == '2' && type == 'arrival'" class="badge badge-success">ARRIVED</span>
+                  <span v-else-if="transfer.status == '2' && type == 'departure'" class="badge badge-success">DEPARTED</span>
+                  <span v-else-if="transfer.status == '3' && type == 'departure'" class="badge badge-info">ON GATE</span>
                 </td>
                 <td>
                   <div class="btn-group">

@@ -1911,6 +1911,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.getTransfers();
@@ -1999,6 +2006,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -69725,22 +69733,62 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-sm btn-success",
-                            on: {
-                              click: function($event) {
-                                return _vm.statusChange(transfer.id, 2)
-                              }
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n                  ARRIVED\n                "
+                        _vm.type == "arrival"
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-success",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.statusChange(transfer.id, 2)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  ARRIVED\n                "
+                                )
+                              ]
                             )
-                          ]
-                        )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.type == "departure"
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-success",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.statusChange(transfer.id, 2)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  DEPARTED\n                "
+                                )
+                              ]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.type == "departure"
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-info",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.statusChange(transfer.id, 3)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  ON GATE\n                "
+                                )
+                              ]
+                            )
+                          : _vm._e()
                       ])
                     ]),
                     _vm._v(" "),
@@ -69755,9 +69803,17 @@ var render = function() {
                         ? _c("span", { staticClass: "badge badge-danger" }, [
                             _vm._v("DELAY")
                           ])
-                        : transfer.status == "2"
+                        : transfer.status == "2" && _vm.type == "arrival"
                         ? _c("span", { staticClass: "badge badge-success" }, [
                             _vm._v("ARRIVED")
+                          ])
+                        : transfer.status == "2" && _vm.type == "departure"
+                        ? _c("span", { staticClass: "badge badge-success" }, [
+                            _vm._v("DEPARTED")
+                          ])
+                        : transfer.status == "3"
+                        ? _c("span", { staticClass: "badge badge-info" }, [
+                            _vm._v("ON GATE")
                           ])
                         : _vm._e()
                     ])
@@ -70402,13 +70458,17 @@ var render = function() {
                         ? _c("span", { staticClass: "badge badge-danger" }, [
                             _vm._v("DELAY")
                           ])
-                        : transfer.status == "2"
+                        : transfer.status == "2" && _vm.type == "arrival"
                         ? _c("span", { staticClass: "badge badge-success" }, [
                             _vm._v("ARRIVED")
                           ])
-                        : transfer.status == "3"
+                        : transfer.status == "2" && _vm.type == "departure"
+                        ? _c("span", { staticClass: "badge badge-success" }, [
+                            _vm._v("DEPARTED")
+                          ])
+                        : transfer.status == "3" && _vm.type == "departure"
                         ? _c("span", { staticClass: "badge badge-info" }, [
-                            _vm._v("LEAVE")
+                            _vm._v("ON GATE")
                           ])
                         : _vm._e()
                     ]),

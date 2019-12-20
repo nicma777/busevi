@@ -53,7 +53,7 @@
                         @elseif($arival->status == '2')
                         <span class="text-success ongate">ARRIVED</span>
                         @elseif($arival->status == '3')
-                        <span class="text-white">LEAVE</span>
+                        <span class="text-info">LEAVE</span>
                         @else
                         <span>{{ \Carbon\Carbon::parse($arival->time)->format('H:i') }}</span>
                         @endif
@@ -81,22 +81,24 @@
                     <th>
                         <strong class="text-white header">Polazak </strong>
                         <br>
-                        <span class="text-second header">Depatrure</span>
+                        <span class="text-second header">Departure</span>
                     </th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($departures as $depatrure)
+                @foreach($departures as $departure)
                 <tr>
-                    <td>{{ $depatrure->city }}</td>
-                    <td>{{ $depatrure->carrier }}</td>
+                    <td>{{ $departure->city }}</td>
+                    <td>{{ $departure->carrier }}</td>
                     <td>
-                        @if($depatrure->status == '1')
+                        @if($departure->status == '1')
                         <span class="text-danger delay">DELAY</span>
-                        @elseif($depatrure->status == '2')
-                        <span class="text-success ongate">ARRIVED</span>
+                        @elseif($departure->status == '2')
+                        <span class="text-success ongate">DEPARTED</span>
+                        @elseif($departure->status == '3')
+                        <span class="text-info">ON GATE</span>
                         @else
-                        <span>{{ \Carbon\Carbon::parse($depatrure->time)->format('H:i') }}</span>
+                        <span>{{ \Carbon\Carbon::parse($departure->time)->format('H:i') }}</span>
                         @endif
                     </td>
 

@@ -25,9 +25,14 @@
                   <button class="btn btn-sm btn-danger" @click="statusChange(transfer.id, 1)">
                     DELAY
                   </button>
-
-                  <button class="btn btn-sm btn-success" @click="statusChange(transfer.id, 2)">
+                  <button v-if="type == 'arrival'" class="btn btn-sm btn-success" @click="statusChange(transfer.id, 2)">
                     ARRIVED
+                  </button>
+                  <button v-if="type == 'departure'" class="btn btn-sm btn-success" @click="statusChange(transfer.id, 2)">
+                    DEPARTED
+                  </button>
+                  <button v-if="type == 'departure'" class="btn btn-sm btn-info" @click="statusChange(transfer.id, 3)">
+                    ON GATE
                   </button>
                   </div>
                 </td>
@@ -35,7 +40,9 @@
                 <td>
                   <span v-if="!transfer.status" class="badge badge-success">OK</span>
                   <span v-else-if="transfer.status == '1'" class="badge badge-danger">DELAY</span>
-                  <span v-else-if="transfer.status == '2'" class="badge badge-success">ARRIVED</span>
+                  <span v-else-if="transfer.status == '2' && type == 'arrival'" class="badge badge-success">ARRIVED</span>
+                  <span v-else-if="transfer.status == '2' && type == 'departure'" class="badge badge-success">DEPARTED</span>
+                  <span v-else-if="transfer.status == '3'" class="badge badge-info">ON GATE</span>
                 </td>
                 
               </tr>
