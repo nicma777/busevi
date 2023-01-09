@@ -28,7 +28,7 @@
     "dependencies": {
         "bootstrap-datetime-picker": "^2.4.4",
         "font-awesome": "^4.7.0",
-        "luxon": "^1.17.2",
+        "luxon": "^2.5.2",
         "moment": "^2.24.0",
         "vue-datetime": "^1.0.0-beta.10",
         "vue-sweetalert2": "^2.1.1",
